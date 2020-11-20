@@ -1,0 +1,18 @@
+<p>Project Manager Table</p>
+
+<table>
+    <tr>
+      <th>Firstname</th>
+      <th>Lastname</th> 
+      <th>Contact No</th>
+      <th>Designation</th>
+      <th>Salary</th>
+    </tr>
+    <tr *ngFor="let detail of employeeDetailProjectManager" [ngStyle]="{color: getColor(detail.salary)}">
+      <td>{{detail.fname}}</td>
+      <td>{{detail.lname}}</td>
+      <td>{{detail.contact}}</td>
+      <td>{{detail.role}}</td>
+      <td>{{detail.salary}}</td>
+    </tr>
+  </table>
