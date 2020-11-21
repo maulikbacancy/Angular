@@ -29,3 +29,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Snapshot
 ![alt text](https://github.com/maulikgevariya/task1/blob/master/task1_snapshot.PNG)
+
+
+Byy.
