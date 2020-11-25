@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { EmployeeDetail } from './shared/employee-detail.model';
+import { EmployeeDetail } from './models/employee-detail.model';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +12,7 @@ export class AppComponent {
   developer: EmployeeDetail[] = [];
   designer: EmployeeDetail[] = [];
 
-  onFormSubmit(formData: { role: string, fname: string, lname: string, contact: number, salary: number }) {
+  onFormSubmit(formData: EmployeeDetail) {
 
     if (formData.role === 'Project-Manager') {
       this.projectManager.push ({

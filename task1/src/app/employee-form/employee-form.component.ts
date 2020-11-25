@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { EmployeeDetail } from '../models/employee-detail.model';
 
 @Component({
   selector: 'app-employee-form',
@@ -7,13 +8,9 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class EmployeeFormComponent implements OnInit {
 
-  fname = '';
-  lname = '';
-  contact: number;
-  salary: number;
-  role = 'Project-Manager';
+  formDetails = new EmployeeDetail('', '', '', null, null);
 
-  @Output()onSubmit = new EventEmitter<{ role: string, fname: string, lname: string, contact: number, salary: number }>();
+  @Output()onSubmit = new EventEmitter<EmployeeDetail>();
 
 
 
@@ -23,12 +20,7 @@ export class EmployeeFormComponent implements OnInit {
   }
 
   onSubmitForm() {
-    this.onSubmit.emit({ role: this.role, fname: this.fname, lname: this.lname, contact: this.contact, salary: this.salary });
-    this.fname = '';
-    this.lname = '';
-    this.contact = null;
-    this.salary = null;
-    this.role = 'Project-Manager';
+    this.onSubmit.emit(this.formDetails);
   }
 
 }
