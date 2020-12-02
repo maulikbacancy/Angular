@@ -1,22 +1,95 @@
 <h3>Employee Form</h3>
 
-<label>First Name : </label>
-<input type="text" [(ngModel)]="formDetails.fname"><br><br>
+<div class="container" style="margin-left: 5px;">
+    <div class="row">
+        <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+            <form (ngSubmit)="form.form.valid && onSubmitForm(form)" #form="ngForm">
+                <div id="userData">
+                    <div class="form-group">
+                        <label for="fname">First Name : </label>
+                        <input 
+                            id="fname"
+                            type="text" 
+                            class="form-control"
+                            ngModel
+                            name="fname"
+                            #fname="ngModel"
+                            placeholder="First Name"
+                            [ngClass]="{ 'is-invalid': fname.touched && fname.invalid }"
+                            required>
+                        <div class="invalid-feedback" *ngIf="fname.invalid && fname.touched">
+                            <p *ngIf="fname.errors.required">first name is required</p>
+                        </div>
+            
+                        <label for="lname">Last Name : </label>
+                        <input
+                            id="lname" 
+                            type="text"
+                            class="form-control"
+                            ngModel
+                            name="lname"
+                            #lname="ngModel"
+                            placeholder="Last Name"
+                            [ngClass]="{ 'is-invalid': lname.touched && lname.invalid }"
+                            required>
+                        <div class="invalid-feedback" *ngIf="lname.invalid && lname.touched">
+                            <p *ngIf="lname.errors.required">last name is required</p>
+                        </div>
+            
+                        <label for="contact">Contact No : </label>
+                        <input 
+                            id="contact"
+                            type="tel"
+                            class="form-control"
+                            ngModel
+                            name="contact"
+                            #contact="ngModel"
+                            placeholder="Contact Number"
+                            [ngClass]="{ 'is-invalid': contact.touched && contact.invalid }"
+                            required
+                            pattern="(0|91|\+91)?[0-9]{10}">
+                        <div class="invalid-feedback" *ngIf="contact.invalid && contact.touched">
+                            <p *ngIf="contact.errors.required">Contact is required</p>
+                            <p *ngIf="contact.errors.pattern">Contact is not valid</p>
+                        </div>
+            
+                        <label for="salary">Annual Salary : </label>
+                        <input 
+                            id="salary"
+                            type="number" 
+                            maxlength="10"
+                            class="form-control"
+                            ngModel
+                            name="salary"
+                            #salary="ngModel"
+                            placeholder="Enter Salary"
+                            [ngClass]="{ 'is-invalid': salary.touched && salary.invalid }"
+                            required>
+                        <div class="invalid-feedback" *ngIf="salary.invalid && salary.touched">
+                            <p *ngIf="salary.errors.required">Salary is required</p>
+                        </div>
+            
+                        <label for="role">Role Type : </label>
+                        <select 
+                            id="role"
+                            ngModel
+                            name="role"
+                            [ngModel]="'Project-Manager'"
+                            class="form-control">
+                            <option>Project-Manager</option>
+                            <option>Developer</option>
+                            <option>Designer</option>
+                        </select><br><br>
+            
+                        <button 
+                            class="btn btn-primary"
+                            type="submit"
+                            [disabled]="!form.valid">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
-<label>Last Name : </label>
-<input type="text" [(ngModel)]="formDetails.lname"><br><br>
 
-<label>Contact No : </label>
-<input type="number" [(ngModel)]="formDetails.contact"><br><br>
-
-<label>Annual Salary : </label>
-<input type="number" maxlength="10" [(ngModel)]="formDetails.salary"><br><br>
-
-<label>Role Type : </label>
-<select [(ngModel)]="formDetails.role">
-    <option>Project-Manager</option>
-    <option>Developer</option>
-    <option>Designer</option>
-</select><br><br>
-
-<button (click)="onSubmitForm()">Submit</button>

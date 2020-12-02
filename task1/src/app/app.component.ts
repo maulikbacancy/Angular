@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { EmployeeDetailService } from './employee-detail.service';
 import { EmployeeDetail } from './models/employee-detail.model';
 
 @Component({
@@ -8,38 +9,6 @@ import { EmployeeDetail } from './models/employee-detail.model';
 })
 export class AppComponent {
 
-  projectManager: EmployeeDetail[] = [];
-  developer: EmployeeDetail[] = [];
-  designer: EmployeeDetail[] = [];
+  constructor() {}
 
-  onFormSubmit(formData: EmployeeDetail) {
-
-    if (formData.role === 'Project-Manager') {
-      this.projectManager.push ({
-        role: formData.role,
-        fname: formData.fname,
-        lname: formData.lname,
-        contact: formData.contact,
-        salary: formData.salary
-      });
-    }
-    else if (formData.role === 'Developer') {
-      this.developer.push ({
-        role: formData.role,
-        fname: formData.fname,
-        lname: formData.lname,
-        contact: formData.contact,
-        salary: formData.salary
-      });
-    }
-    else {
-      this.designer.push ({
-        role: formData.role,
-        fname: formData.fname,
-        lname: formData.lname,
-        contact: formData.contact,
-        salary: formData.salary
-      });
-    }
-  }
 }

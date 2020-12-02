@@ -1,32 +1,27 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { EmployeeDetailService } from '../employee-detail.service';
 import { EmployeeDetail } from '../models/employee-detail.model';
 
 @Component({
   selector: 'app-developer',
   templateUrl: './developer.component.html',
-  styleUrls: ['./developer.component.css']
+  styleUrls: ['./developer.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class DeveloperComponent implements OnInit {
-  @Input()employeeDetailDeveloper: EmployeeDetail[];
+  public employeeDetailDeveloper: EmployeeDetail[];
 
-  constructor() { }
+  constructor(private employeeService: EmployeeDetailService) { }
 
   ngOnInit(): void {
+    this.employeeDetailDeveloper = this.employeeService.getDeveloper();
+
+    this.employeeService.developerChanged.subscribe((developer: EmployeeDetail[]) => {
+      this.employeeDetailDeveloper = developer;
+    });
   }
 
-  getColor(salary: number){
-    if ( salary < 50000) {
-      return 'red';
-    }
-    else if ( salary >= 50000 && salary < 100000 ) {
-      return 'blue';
-    }
-    else if ( salary >= 100000 && salary < 200000 ){
-      return 'purple';
-    }
-    else {
-      return 'green';
-    }
+  public getColor(salary: number): string{
+    return this.employeeService.getColor(salary);
   }
-
 }

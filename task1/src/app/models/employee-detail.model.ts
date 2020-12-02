@@ -1,6 +1,6 @@
 export class EmployeeDetail {
 
-    public role = 'Project-Manager';
+    public role: string;
     public fname: string;
     public lname: string;
     public contact: number;

@@ -7,6 +7,7 @@ import { EmployeeFormComponent } from './employee-form/employee-form.component';
 import { ProjectManagerComponent } from './project-manager/project-manager.component';
 import { DeveloperComponent } from './developer/developer.component';
 import { DesignerComponent } from './designer/designer.component';
+import { EmployeeDetailService } from './employee-detail.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { DesignerComponent } from './designer/designer.component';
     BrowserModule,
     FormsModule
   ],
-  providers: [],
+  providers: [EmployeeDetailService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
