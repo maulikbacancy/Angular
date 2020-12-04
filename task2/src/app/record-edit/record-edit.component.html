@@ -1,0 +1,42 @@
+<h6 *ngIf="!editMode">Add User</h6>
+<h6 *ngIf="editMode">Edit User</h6>
+
+<form (ngSubmit)="form.form.valid && onSubmitForm(form)" #form="ngForm">
+    <div id="userData">
+        <div class="form-group">
+            <label for="fname">First Name : </label>
+            <input 
+                id="fname"
+                type="text" 
+                class="form-control"
+                [(ngModel)]="firstName"
+                name="fname"
+                #fname="ngModel"
+                placeholder="First Name"
+                [ngClass]="{ 'is-invalid': fname.touched && fname.invalid }"
+                required>
+            <div class="invalid-feedback" *ngIf="fname.invalid && fname.touched">
+                <p *ngIf="fname.errors.required">first name is required</p>
+            </div>
+
+            <label for="lname">Last Name : </label>
+            <input
+                id="lname" 
+                type="text"
+                class="form-control"
+                [(ngModel)]="lastName"
+                name="lname"
+                #lname="ngModel"
+                placeholder="Last Name"
+                [ngClass]="{ 'is-invalid': lname.touched && lname.invalid }"
+                required>
+            <div class="invalid-feedback" *ngIf="lname.invalid && lname.touched">
+                <p *ngIf="lname.errors.required">last name is required</p>
+            </div><br>
+            <button 
+                class="btn btn-primary"
+                type="submit"
+                [disabled]="!form.valid">Submit</button>
+        </div>
+    </div>
+</form>

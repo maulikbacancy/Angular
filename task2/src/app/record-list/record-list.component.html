@@ -1,0 +1,35 @@
+<table class="table table-bordered" style="width: 150%;">
+  <thead>
+    <tr>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Avtar</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let userData of user">
+      <td>{{ userData.first_name }}</td>
+      <td>{{ userData.last_name }}</td>
+      <td><img src="{{ userData.avatar }}" height="50px" width="50px"></td>
+      <td>
+        <a style="cursor: pointer; color: black;" [routerLink]="'/recordlist/'+userData.id">Edit </a>|
+        <a style="cursor: pointer;" (click)="deleteUser(userData.id)"> Delete</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<nav>
+    <ul class="pagination">
+      <li 
+        class="page-item" 
+        *ngFor="let page of getArray(totalPage); let i=index"
+        style="cursor: pointer;"
+        [ngClass]="currentPage === i+1 ? 'active': ''"
+        (click)="getUser(i+1); currentPage = i+1"
+      >
+        <a class="page-link" >{{i+1}}</a>
+      </li>
+    </ul>
+</nav>
