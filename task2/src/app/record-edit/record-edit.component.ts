@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { from } from 'rxjs';
 import { RecordService } from '../record.service';
 
 @Component({
@@ -10,14 +9,15 @@ import { RecordService } from '../record.service';
   styleUrls: ['./record-edit.component.css']
 })
 export class RecordEditComponent implements OnInit {
-  id: number;
-  editMode = false;
-  firstName: string;
-  lastName: string;
+  private id: number;
+  public editMode = false;
+  public firstName: string;
+  public lastName: string;
 
   constructor(private route: ActivatedRoute, private recordService: RecordService, private router: Router) { }
 
   ngOnInit(): void {
+    // get id from query param and check whether it is edit mode or new user mode and updeate variable accordingly
     this.route.params.subscribe(
       (params: Params) => {
         this.id = +params.id;
@@ -34,7 +34,7 @@ export class RecordEditComponent implements OnInit {
     );
   }
 
-  onSubmitForm(form: NgForm): void {
+  public onSubmitForm(form: NgForm): void {
     if (this.editMode === true) {
       this.recordService.updateUser(this.id, {first_name: this.firstName, job: this.lastName});
     }

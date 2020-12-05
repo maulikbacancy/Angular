@@ -12,15 +12,15 @@ export class RecordService {
 
   private readonly URL = 'https://reqres.in/api/users';
 
-  getUserByPage(page: number): Observable<IApiResponce> {
+  public getUserByPage(page: number): Observable<IApiResponce> {
     return this.http.get<IApiResponce>(this.URL + '?page=' + page);
   }
 
-  getUserById(id: number): Observable<IApiResponceById> {
+  public getUserById(id: number): Observable<IApiResponceById> {
     return this.http.get<IApiResponceById>(this.URL + '/' + id);
   }
 
-  addNewUser(user: {first_name: string, job: string}): void{
+  public addNewUser(user: {first_name: string, job: string}): void{
     this.http.post(this.URL, user).subscribe(
       (responce) => {
         console.log(responce);
@@ -28,7 +28,7 @@ export class RecordService {
     );
   }
 
-  updateUser(id: number, user: {first_name: string, job: string}): void {
+  public updateUser(id: number, user: {first_name: string, job: string}): void {
     this.http.put(this.URL + '/' + id, user).subscribe(
       (responce) => {
         console.log(responce);
@@ -36,7 +36,7 @@ export class RecordService {
     );
   }
 
-  deleteUser(id: number): void {
+  public deleteUser(id: number): void {
     this.http.delete(this.URL + '/' + id)
         .subscribe(
           data => {

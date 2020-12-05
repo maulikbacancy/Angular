@@ -11,15 +11,15 @@ import { RecordService } from '../record.service';
 export class RecordListComponent implements OnInit {
 
   constructor(private recordService: RecordService, private route: ActivatedRoute) { }
-  user: UserDataDetail[] = [];
-  totalPage: number;
-  currentPage = 1;
+  public user: UserDataDetail[] = [];
+  public totalPage: number;
+  public currentPage = 1;
 
   ngOnInit(): void {
     this.getUser(this.currentPage);
   }
 
-  getUser(page: number): void {
+  public getUser(page: number): void {
     this.recordService.getUserByPage(page).subscribe(
       requestedData => {
         this.user = requestedData.data;
@@ -28,7 +28,7 @@ export class RecordListComponent implements OnInit {
     );
   }
 
-  deleteUser(id: number): void {
+  public deleteUser(id: number): void {
     if (confirm('Are you sure want to delete ?')) {
       this.recordService.deleteUser(id);
       this.user = this.user.filter(
@@ -37,7 +37,7 @@ export class RecordListComponent implements OnInit {
     }
   }
 
-  getArray(n: number): Array<number> {
+  public getArray(n: number): Array<number> {
     return Array(n);
   }
 }
