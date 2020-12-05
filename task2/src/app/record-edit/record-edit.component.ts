@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { from } from 'rxjs';
 import { RecordService } from '../record.service';
 
@@ -15,7 +15,7 @@ export class RecordEditComponent implements OnInit {
   firstName: string;
   lastName: string;
 
-  constructor(private route: ActivatedRoute, private recordService: RecordService) { }
+  constructor(private route: ActivatedRoute, private recordService: RecordService, private router: Router) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(
@@ -35,12 +35,13 @@ export class RecordEditComponent implements OnInit {
   }
 
   onSubmitForm(form: NgForm): void {
-    if(this.editMode === true) {
+    if (this.editMode === true) {
       this.recordService.updateUser(this.id, {first_name: this.firstName, job: this.lastName});
     }
     else {
       this.recordService.addNewUser({first_name: this.firstName, job: this.lastName});
     }
+    this.router.navigate(['/recordlist'], {relativeTo: this.route});
   }
 
 }
