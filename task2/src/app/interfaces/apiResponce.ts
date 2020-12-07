@@ -6,10 +6,6 @@ export interface IApiResponce{
     data: {id: number, email: string, first_name: string, last_name: string, avatar: string}[];
 }
 
-export interface IApiResponceById {
-    data: {id: number, email: string, first_name: string, last_name: string, avatar: string};
-}
-
 export interface UserDataDetail {
     id: number;
     email: string;

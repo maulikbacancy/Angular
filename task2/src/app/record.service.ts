@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IApiResponce, IApiResponceById } from './interfaces/apiResponce';
+import { IApiResponce, UserDataDetail } from './interfaces/apiResponce';
 
 @Injectable({
   providedIn: 'root'
@@ -10,14 +10,12 @@ export class RecordService {
 
   constructor(private http: HttpClient) { }
 
+  public editUser: UserDataDetail;
+
   private readonly URL = 'https://reqres.in/api/users';
 
   public getUserByPage(page: number): Observable<IApiResponce> {
     return this.http.get<IApiResponce>(this.URL + '?page=' + page);
-  }
-
-  public getUserById(id: number): Observable<IApiResponceById> {
-    return this.http.get<IApiResponceById>(this.URL + '/' + id);
   }
 
   public addNewUser(user: {first_name: string, job: string}): void{

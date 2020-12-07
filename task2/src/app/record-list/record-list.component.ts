@@ -37,6 +37,10 @@ export class RecordListComponent implements OnInit {
     }
   }
 
+  onEditUser(index: number): void {
+    this.recordService.editUser = this.user[index] as UserDataDetail;
+  }
+
   public getArray(n: number): Array<number> {
     return Array(n);
   }

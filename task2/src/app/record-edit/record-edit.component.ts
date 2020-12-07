@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { RecordService } from '../record.service';
@@ -22,16 +22,13 @@ export class RecordEditComponent implements OnInit {
       (params: Params) => {
         this.id = +params.id;
         this.editMode = params.id != null;
-        if (this.editMode === true) {
-          this.recordService.getUserById(this.id).subscribe(
-            requestedData => {
-              this.firstName = requestedData.data.first_name;
-              this.lastName = requestedData.data.last_name;
-            }
-          );
-        }
       }
     );
+
+    if (this.editMode === true) {
+      this.firstName = this.recordService.editUser.first_name;
+      this.lastName = this.recordService.editUser.last_name;
+    }
   }
 
   public onSubmitForm(form: NgForm): void {
@@ -43,5 +40,6 @@ export class RecordEditComponent implements OnInit {
     }
     this.router.navigate(['/recordlist'], {relativeTo: this.route});
   }
+
 
 }

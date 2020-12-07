@@ -8,12 +8,12 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let userData of user">
+    <tr *ngFor="let userData of user; let i=index">
       <td>{{ userData.first_name }}</td>
       <td>{{ userData.last_name }}</td>
       <td><img src="{{ userData.avatar }}" height="50px" width="50px"></td>
       <td>
-        <a style="cursor: pointer; color: black;" [routerLink]="'/recordlist/'+userData.id">Edit </a>|
+        <a style="cursor: pointer; color: black;" (click)="onEditUser(i)" [routerLink]="'/recordlist/'+userData.id">Edit </a>|
         <a style="cursor: pointer;" (click)="deleteUser(userData.id)"> Delete</a>
       </td>
     </tr>
