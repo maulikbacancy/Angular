@@ -18,28 +18,15 @@ export class RecordService {
     return this.http.get<IApiResponce>(this.URL + '?page=' + page);
   }
 
-  public addNewUser(user: {first_name: string, job: string}): void{
-    this.http.post(this.URL, user).subscribe(
-      (responce) => {
-        console.log(responce);
-      }
-    );
+  public addNewUser(user: {first_name: string, job: string}): Observable<any> {
+    return this.http.post(this.URL, user);
   }
 
-  public updateUser(id: number, user: {first_name: string, job: string}): void {
-    this.http.put(this.URL + '/' + id, user).subscribe(
-      (responce) => {
-        console.log(responce);
-      }
-    );
+  public updateUser(id: number, user: {first_name: string, job: string}): Observable<any> {
+    return this.http.put(this.URL + '/' + id, user);
   }
 
-  public deleteUser(id: number): void {
-    this.http.delete(this.URL + '/' + id)
-        .subscribe(
-          data => {
-            console.log(data);
-          }
-        );
+  public deleteUser(id: number): Observable<any> {
+    return this.http.delete(this.URL + '/' + id);
   }
 }

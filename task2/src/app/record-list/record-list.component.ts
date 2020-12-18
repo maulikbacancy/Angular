@@ -30,7 +30,11 @@ export class RecordListComponent implements OnInit {
 
   public deleteUser(id: number): void {
     if (confirm('Are you sure want to delete ?')) {
-      this.recordService.deleteUser(id);
+      this.recordService.deleteUser(id).subscribe(
+        data => {
+          console.log(data);
+        }
+      );
       this.user = this.user.filter(
         (value) => value.id !== id
       );

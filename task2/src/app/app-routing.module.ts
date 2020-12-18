@@ -6,7 +6,6 @@ import { RecordListComponent } from './record-list/record-list.component';
 const routes: Routes = [
   { path: '', redirectTo: '/recordlist', pathMatch: 'full'},
   { path: 'recordlist', component: RecordListComponent},
-  { path: 'recordlist/new', component: RecordEditComponent},
   { path: 'recordlist/:id', component: RecordEditComponent}
 ];
 
