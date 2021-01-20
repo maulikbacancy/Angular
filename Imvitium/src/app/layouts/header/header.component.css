@@ -1,0 +1,32 @@
+li {
+    background-color: #394e78;
+    border-radius: 20px;
+    padding: 3px;
+    cursor: pointer;
+}
+
+
+
+.img1 {
+    background: url('http://bacancy.com/imvitium/frontend/img1.a740e7adf8ffc55b600a.png');
+    position: fixed;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.img2 {
+    background: url('http://bacancy.com/imvitium/frontend/img2.64939d120ccf4022c89d.png');
+    position: relative;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.row {
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.image-class {
+    width: 80%;
+    height: 80%;
+}

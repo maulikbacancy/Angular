@@ -1,0 +1,46 @@
+.container{
+    color: white;
+}
+
+input, textarea {
+    background-color: #85D6DD;
+    border-radius: 25px;
+}
+
+button {
+    background-color: #394E78;
+    color: white;
+    
+}
+ 
+h2 {
+    margin-top: 30px;
+}
+
+.img-right {
+    position: absolute;
+    width: 40%;
+    height: 30%;
+    margin-top: 150px;
+    margin-left: 300px;
+    cursor: pointer;
+}
+
+.center-margin {
+    margin-right: 150px;
+}
+@media (max-width: 800px) {
+    .center-margin {
+        margin-right: 0px;
+    }
+
+    .img-right {
+        position: absolute;
+        width: 30%;
+        height: 20%;
+        margin-top: 0px;
+        margin-left: 70px;
+        cursor: pointer;
+    }
+}
+

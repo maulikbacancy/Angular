@@ -1,0 +1,57 @@
+<app-header></app-header>
+<div class="container mt-40">
+    <div class="row justify-content-center center-margin">
+        <div class="col-md-5 col-xl-5 col-sm-5 max-auto text-center">
+            <div class="row">
+                <div class="col-md-12 col-lg-12 col-xl-12 col-sm-12 col-12">
+                    <div>
+                        <img src="assets/chat-icon.png" class="img-right">
+                    </div>
+                    <form>
+                        <h2 >CONTACT</h2>
+                        <div class="form-group text-left">
+                        <label for="name">name</label>
+                        <input
+                          type="text"
+                          class="form-control input-text"
+                          ngModel
+                          name="name"
+                          required
+                        />
+                      </div>
+                      
+            
+                      <div class="form-group text-left">
+                        <label for="email">email</label>
+                        <input
+                          type="text"
+                          name="email"
+                          class="form-control input-text"
+                          ngModel
+                          required
+                          minlength="6"
+                        />
+                      </div>
+                      
+            
+                      <div class="form-group text-left">
+                        <label for="message">username</label>
+                        <textarea
+                          rows="6"
+                          name="message"
+                          class="form-control input-text"
+                          ngModel
+                        ></textarea>
+                      </div>
+
+                      <div class="form-group">
+                        <button class="center btn" type="submit">
+                          SUBMIT
+                        </button>
+                      </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>                

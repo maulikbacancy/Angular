@@ -1,0 +1,36 @@
+.container{
+    color: white;
+}
+
+h2 {
+    text-align: center;
+}
+
+input {
+    background-color: #85D6DD;
+    border-radius: 25px;
+}
+
+button {
+    background-color: #394E78;
+    color: white;
+    
+}
+
+.signupbg {
+    position: absolute;
+    left: 0;
+    margin-left: -100px;
+    z-index: 1;
+    width: 80%;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+@media (max-width: 800px) {
+    .signupbg {
+        width: 0px;
+        height: 0px;
+    }
+}
