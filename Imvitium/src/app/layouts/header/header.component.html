@@ -1,7 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-light text-center">
-  
+<nav class="navbar navbar-expand-lg navbar-dark text-center">
   <button 
-    style="background-color: #85D6DD;" 
+    style="background-color: #394e78;" 
     class="navbar-toggler" 
     type="button" 
     (click)="toggleNavbar()"  
@@ -29,6 +28,7 @@
 
   <div class="navbar-brand mx-auto" *ngIf="!navbarOpen">
       <img 
+        [routerLink]="['/']"
         src='assets/logo.png' 
         class="image-class">    
   </div>
