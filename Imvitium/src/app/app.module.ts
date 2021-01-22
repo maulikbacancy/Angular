@@ -13,6 +13,7 @@ import { HomeComponent } from './core/home/home.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { AboutComponent } from './core/about/about.component';
 import { FeaturesComponent } from './core/features/features.component';
+import { ForgotPasswordComponent } from './core/auth/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { FeaturesComponent } from './core/features/features.component';
     ContactComponent,
     HomeComponent,
     AboutComponent,
-    FeaturesComponent
+    FeaturesComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,

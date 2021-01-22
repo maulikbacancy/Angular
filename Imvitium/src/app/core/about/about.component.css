@@ -1,17 +1,11 @@
-
 h2 {
     font-size: 55px;
     margin: 0 0 15px;
-    padding: 0;
     font-weight: 400;
     color: #fff;
 }
 
-.text-center {
-    text-align: center;
-}
-
-.spiral-img {
+.img-class {
     margin-top: 0;
     width: 100%;
     max-width: 500px;
@@ -21,22 +15,6 @@ p {
     color: #fff;
     margin-bottom: 20px;
 }
-
-.bold {
-    font-weight: 700;
-}
-
-.align-justify{
-    text-align: justify;
-}
-
-.color-white {
-    color: #fff;
-    font-size: 18px;
-    line-height: 20px;
-    font-family: futura-pt;
-}
-
 
 @media (max-width: 1023px) {
     h2 {
