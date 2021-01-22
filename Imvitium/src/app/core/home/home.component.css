@@ -1,7 +1,5 @@
 
 .container {
-    padding-left: 50px;
-    padding-right: 50px;
     margin-top: 50px;
 }
 
@@ -11,15 +9,10 @@
     margin-bottom: 30px;
 }
 
-.mb-35 {
-    margin-bottom: 35px;
-}
 
 h2 {
     font-size: 55px;
-    margin: 0 0 15px;
-    padding: 0;
-    font-weight: 400;
+    margin-top: 20px;
     color: #fff;
 }
 
@@ -27,13 +20,8 @@ h2 {
     width: 70%;
     height: 246px;
     color: #fff;
-    text-align: center;
     margin-left: 105px;
     border: 1px solid #5a8499;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
 }
 
 ul.list li {
@@ -44,7 +32,6 @@ ul.list li {
     display: flex;
     font-weight: 500;
     color: #fff;
-    text-align: -webkit-match-parent;
 }
 
 ul.list li span {
