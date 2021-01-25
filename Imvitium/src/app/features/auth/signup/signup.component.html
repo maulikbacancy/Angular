@@ -1,0 +1,141 @@
+<div>
+  <app-header></app-header>
+
+<div class="container ">
+  <div class="row">
+    <div class="col-md-7 col-xl-8 col-sm-12">
+      <div class="img-class">
+        <img src="assets/signup-bg.png" class="img-class">
+      </div>
+    </div>
+    <div class="col-md-5 col-xl-4 col-sm-12 text-center">
+        <form #form="ngForm">
+          <h2>SIGN UP</h2>
+
+          <div class="form-group text-left">
+            <label for="name">name</label>
+            <input
+              type="text"
+              class="form-control"
+              ngModel
+              #name="ngModel"
+              name="name"
+              required
+              minlength = "3"
+              pattern = "^[a-zA-Z]{3,}$"
+              [ngClass]="{ 'is-invalid': name.touched && !name.valid  , 'is-valid': name.valid}"
+            />
+            <div class="invalid-feedback text-right" *ngIf="name.invalid && name.touched">
+              <p *ngIf="name.errors.required">Name is required</p>
+              <p *ngIf="name.errors.minlength">Name should be more than 2 charecter </p>
+              <p *ngIf="name.errors.pattern && !name.errors.minlength">Only alphabets are allowed </p>
+            </div>
+          </div>
+          
+
+          <div class="form-group text-left">
+            <label for="email">email</label>
+            <input
+              type="text"
+              name="email"
+              class="form-control"
+              ngModel
+              required
+              pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+              #email="ngModel"
+              [ngClass]="{ 'is-invalid': email.touched && email.invalid , 'is-valid': !email.invalid }"
+            />
+            <div class="invalid-feedback text-right" *ngIf="email.invalid && email.touched">
+              <p *ngIf="email.errors.required">Email is required</p>
+              <p *ngIf="email.errors.pattern">Email is not valid</p>
+            </div>
+          </div>
+          
+
+          <div class="form-group text-left">
+            <label for="username">username</label>
+            <input
+              type="text"
+              name="username"
+              class="form-control"
+              ngModel
+              required
+              #username="ngModel"
+              pattern="^[a-z0-9_-]{6,16}$"
+              [ngClass]="{ 'is-invalid': username.touched && username.invalid , 'is-valid': !username.invalid }"
+            />
+            <div class="invalid-feedback text-right" *ngIf="username.invalid && username.touched">
+              <p *ngIf="username.errors.required">username is required</p>
+              <p *ngIf="username.errors.pattern">username is not valid</p>
+            </div>
+          </div>
+          
+
+          <div class="form-group text-left">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              name="password"
+              class="form-control"
+              ngModel
+              required
+              #password="ngModel"
+              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*_=+-]).{8,12}"
+              [ngClass]="{ 'is-invalid': password.touched && password.invalid , 'is-valid': !password.invalid }"
+            />
+            <div class="invalid-feedback text-right" *ngIf="password.invalid && password.touched">
+              <p *ngIf="password.errors.required">password is required</p>
+              <pre *ngIf="password.errors.pattern">
+                At least 1 Uppercase
+                At least 1 Lowercase
+                At least 1 Number
+                At least 1 Special Character
+                Min 8 chars and Max 12 chars
+              </pre>
+            </div>
+          </div>
+          
+
+          <div class="form-group text-left">
+            <label for="conform-password">Confirm Password</label>
+            <input
+              type="password"
+              name="conform-password"
+              class="form-control"
+              ngModel
+              required
+              validateEqual="password"
+              validate
+              #confirmPassword="ngModel"
+              [ngClass]="{ 'is-invalid': confirmPassword.touched && confirmPassword.invalid , 'is-valid': confirmPassword.valid }"
+            />
+            <div class="invalid-feedback text-right" *ngIf="confirmPassword.invalid && confirmPassword.touched">
+              <p *ngIf="confirmPassword.errors.required">Confirm password is required</p>
+              <p *ngIf="confirmPassword.invalid && !confirmPassword.errors.required">Password and confirm password not matching</p>
+            </div>
+          </div>
+          
+
+          <div class="form-group">
+            <button 
+              class="center btn" 
+              [disabled]="!form.valid"
+              type="submit">
+              SIGNUP
+            </button>
+          </div>
+
+          <div class="form-group">
+            Already Have Account ? 
+            <a
+            style="color: white; cursor: pointer;"
+            [routerLink]="['/login']"
+            ><u>Log In</u></a>
+          </div>
+        </form>
+    </div>
+  </div>
+</div>
+  
+</div>
+

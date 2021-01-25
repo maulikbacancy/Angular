@@ -14,7 +14,11 @@ input {
 button {
     background-color: #394E78;
     color: white;
-    
+    border-radius: 20px;
+}
+
+pre {
+    color: red;
 }
 
 .img-class {
@@ -30,6 +34,11 @@ button {
 
 @media (max-width: 800px) {
     .signupbg {
+        width: 0px;
+        height: 0px;
+    }
+
+    .img-class {
         width: 0px;
         height: 0px;
     }

@@ -15,13 +15,19 @@
   <div class="collapse navbar-collapse" [ngClass] ="{'show': navbarOpen}"  [ngStyle]="{'margin-left' : navbarOpen ? '0px' : '30px'}">
       <ul class=" navbar-nav" >
         <li 
-          class="nav-item" 
+          class="nav-item"
           [ngStyle]="{'margin-right' : navbarOpen ? '0px' : '10px'}">
-          <a class="nav-link" [routerLink]="['/about']" >ABOUT</a>
+          <a 
+            class="nav-link"  
+            routerLinkActive="active"
+            [routerLink]="['/about']" >ABOUT</a>
         </li>
         <li 
           class="nav-item">
-          <a class="nav-link " [routerLink]="['/features']">FEATURES</a>
+          <a 
+            class="nav-link " 
+            routerLinkActive="active"
+            [routerLink]="['/features']">FEATURES</a>
         </li>
       </ul>
   </div>
@@ -38,15 +44,24 @@
       <li 
         class="nav-item" 
         [ngStyle]="{'margin-right' : navbarOpen ? '0px' : '70px'}">
-          <a class="nav-link" [routerLink]="['/contact']">CONTACT</a>
+          <a 
+            class="nav-link" 
+            routerLinkActive="active"
+            [routerLink]="['/contact']">CONTACT</a>
       </li>
       <li 
         class="nav-item" 
         [ngStyle]="{'margin-right' : navbarOpen ? '0px' : '10px'}" >
-        <a class="nav-link" [routerLink]="['/login']">LOGIN</a>
+        <a 
+          class="nav-link" 
+          routerLinkActive="active"
+          [routerLink]="['/login']">LOGIN</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/signup']">SIGNUP</a>
+        <a 
+          class="nav-link"
+          routerLinkActive="active"
+          [routerLink]="['/signup']">SIGNUP</a>
       </li>
     </ul>
   </div>

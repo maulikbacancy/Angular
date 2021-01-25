@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AboutComponent } from './core/about/about.component';
-import { ForgotPasswordComponent } from './core/auth/forgot-password/forgot-password.component';
-import { LoginComponent } from './core/auth/login/login.component';
-import { SignupComponent } from './core/auth/signup/signup.component';
-import { ContactComponent } from './core/contact/contact.component';
-import { FeaturesComponent } from './core/features/features.component';
-import { HomeComponent } from './core/home/home.component';
+import { AboutComponent } from './features/about/about.component';
+import { ForgotPasswordComponent } from './features/auth/forgot-password/forgot-password.component';
+import { LoginComponent } from './features/auth/login/login.component';
+import { SignupComponent } from './features/auth/signup/signup.component';
+import { ContactComponent } from './features/contact/contact.component';
+import { FeaturesComponent } from './features/features/features.component';
+import { HomeComponent } from './features/home/home.component';
 
 const routes: Routes = [
   {path: '',redirectTo: "/home", pathMatch: "full"},

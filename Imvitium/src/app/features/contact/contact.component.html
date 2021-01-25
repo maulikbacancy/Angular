@@ -1,0 +1,79 @@
+<app-header></app-header>
+<div class="container mt-40">
+    <div class="row justify-content-center center-margin">
+        <div class="col-md-5 col-xl-5 col-sm-5 max-auto text-center">
+            <div class="row">
+                <div class="col-md-12 col-lg-12 col-xl-12 col-sm-12 col-12">
+                    <div>
+                        <img src="assets/chat-icon.png" class="img-right">
+                    </div>
+                    <form #form="ngForm">
+                      <h2 >CONTACT</h2>
+                      <div class="form-group text-left">
+                        <label for="name">name</label>
+                        <input
+                          type="text"
+                          class="form-control input-text"
+                          ngModel
+                          name="name"
+                          required
+                          #name="ngModel"
+                          minlength = "3"
+                          [ngClass]="{ 'is-invalid': name.touched && !name.valid  , 'is-valid': name.valid}"
+                        />
+                        <div class="invalid-feedback text-right" *ngIf="name.invalid && name.touched">
+                          <p *ngIf="name.errors.required">Name is required</p>
+                          <p *ngIf="name.errors.minlength">Name should be more than 2 charecter </p>
+                        </div>
+                      </div>
+                    
+          
+                      <div class="form-group text-left">
+                        <label for="email">email</label>
+                        <input
+                          type="text"
+                          name="email"
+                          class="form-control input-text"
+                          ngModel
+                          required
+                          pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                          #email="ngModel"
+                          [ngClass]="{ 'is-invalid': email.touched && email.invalid , 'is-valid': !email.invalid }"
+                        />
+                        <div class="invalid-feedback text-right" *ngIf="email.invalid && email.touched">
+                          <p *ngIf="email.errors.required">Email is required</p>
+                          <p *ngIf="email.errors.pattern">Email is not valid</p>
+                        </div>
+                      </div>
+                      
+            
+                      <div class="form-group text-left">
+                        <label for="message">Comment</label>
+                        <textarea
+                          rows="6"
+                          name="message"
+                          class="form-control input-text"
+                          ngModel
+                          required
+                          #comment="ngModel"
+                          [ngClass]="{ 'is-invalid': comment.touched && comment.invalid , 'is-valid': !comment.invalid }"
+                        ></textarea>
+                        <div class="invalid-feedback text-right" *ngIf="comment.invalid && comment.touched">
+                          <p *ngIf="comment.errors.required">Comment is required</p>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <button 
+                          class="center btn" 
+                          [disabled]="!form.valid"
+                          type="submit">
+                          SUBMIT
+                        </button>
+                      </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>                

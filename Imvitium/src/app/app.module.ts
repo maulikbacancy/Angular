@@ -4,16 +4,17 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './layouts/header/header.component';
-import { AuthComponent } from './core/auth/auth.component';
-import { LoginComponent } from './core/auth/login/login.component';
-import { SignupComponent } from './core/auth/signup/signup.component';
 import { FormsModule } from '@angular/forms';
-import { ContactComponent } from './core/contact/contact.component';
-import { HomeComponent } from './core/home/home.component';
-import { ScrollingModule } from '@angular/cdk/scrolling';
-import { AboutComponent } from './core/about/about.component';
-import { FeaturesComponent } from './core/features/features.component';
-import { ForgotPasswordComponent } from './core/auth/forgot-password/forgot-password.component';
+import { AboutComponent } from './features/about/about.component';
+import { AuthComponent } from './features/auth/auth.component';
+import { ForgotPasswordComponent } from './features/auth/forgot-password/forgot-password.component';
+import { LoginComponent } from './features/auth/login/login.component';
+import { SignupComponent } from './features/auth/signup/signup.component';
+import { ContactComponent } from './features/contact/contact.component';
+import { FeaturesComponent } from './features/features/features.component';
+import { HomeComponent } from './features/home/home.component';
+import { EqualValidator } from './features/auth/confirmPasswordValidate.directive';
+
 
 @NgModule({
   declarations: [
@@ -26,14 +27,14 @@ import { ForgotPasswordComponent } from './core/auth/forgot-password/forgot-pass
     HomeComponent,
     AboutComponent,
     FeaturesComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    EqualValidator
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AppRoutingModule,
-    FormsModule,
-    ScrollingModule
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
