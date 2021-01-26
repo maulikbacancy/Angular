@@ -1,26 +1,33 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { AboutComponent } from './features/about/about.component';
-import { ForgotPasswordComponent } from './features/auth/forgot-password/forgot-password.component';
-import { LoginComponent } from './features/auth/login/login.component';
-import { SignupComponent } from './features/auth/signup/signup.component';
-import { ContactComponent } from './features/contact/contact.component';
-import { FeaturesComponent } from './features/features/features.component';
-import { HomeComponent } from './features/home/home.component';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
 const routes: Routes = [
   {path: '',redirectTo: "/home", pathMatch: "full"},
-  {path: 'home', component: HomeComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'signup', component: SignupComponent},
-  {path: 'forgotpassword', component: ForgotPasswordComponent},
-  {path: 'contact', component: ContactComponent},
-  {path: 'about', component: AboutComponent},
-  {path: 'features', component: FeaturesComponent},
+  {
+    path: "home",
+    loadChildren: () => import("./features/home/home.module").then(m => m.HomeModule)
+  },
+  {
+    path: "about",
+    loadChildren: () => import("./features/about/about.module").then(m => m.AboutModule)
+  },
+  {
+    path: "features",
+    loadChildren: () => import("./features/features/features.module").then(m => m.FeatureModule)
+  },
+  {
+    path: "contact",
+    loadChildren: () => import("./features/contact/contact.module").then(m => m.ContactModule)
+  },
+  {
+    path: "auth",
+    loadChildren: () => import("./features/auth/auth.module").then(m => m.AuthModule)
+  },
+  
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -1,5 +1,4 @@
 <div>
-  <app-header></app-header>
 
 <div class="container ">
   <div class="row">
@@ -79,6 +78,8 @@
               class="form-control"
               ngModel
               required
+              validateEqual="confirmPassword"
+              reverse="true"
               #password="ngModel"
               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*_=+-]).{8,12}"
               [ngClass]="{ 'is-invalid': password.touched && password.invalid , 'is-valid': !password.invalid }"
@@ -105,13 +106,13 @@
               ngModel
               required
               validateEqual="password"
-              validate
               #confirmPassword="ngModel"
-              [ngClass]="{ 'is-invalid': confirmPassword.touched && confirmPassword.invalid , 'is-valid': confirmPassword.valid }"
+              [ngClass]="{ 'is-invalid': (confirmPassword.touched && confirmPassword.invalid), 
+                            'is-valid': confirmPassword.valid }"
             />
-            <div class="invalid-feedback text-right" *ngIf="confirmPassword.invalid && confirmPassword.touched">
+            <div class="invalid-feedback text-right" *ngIf="confirmPassword.invalid && confirmPassword.touched ">
               <p *ngIf="confirmPassword.errors.required">Confirm password is required</p>
-              <p *ngIf="confirmPassword.invalid && !confirmPassword.errors.required">Password and confirm password not matching</p>
+              <p *ngIf="!confirmPassword.errors.required">Password and confirm password not matching</p>
             </div>
           </div>
           
@@ -129,7 +130,7 @@
             Already Have Account ? 
             <a
             style="color: white; cursor: pointer;"
-            [routerLink]="['/login']"
+            [routerLink]="['/auth/login']"
             ><u>Log In</u></a>
           </div>
         </form>

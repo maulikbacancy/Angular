@@ -1,5 +1,5 @@
 <div>
-  <app-header></app-header>
+  
   <div class="container mt-40">
       <div class="row justify-content-center center-margin">
         <div class="col-md-4 col-lg-4 col-sm-12 max-auto text-center">
@@ -72,13 +72,13 @@
             <div class="form-group justify-content-center">
               <a 
                 style="cursor: pointer; color: white; text-align: center;"
-                [routerLink]="['/forgotpassword']"
+                [routerLink]="['/auth/forgotpassword']"
                 >
                 <u>Forget Password?</u>
               </a><br>
               Not an User? <a 
                               style="cursor: pointer; color: white;"
-                              [routerLink]="['/signup']"
+                              [routerLink]="['/auth/signup']"
                               >
                               <u>Sign Up</u>
                             </a>
