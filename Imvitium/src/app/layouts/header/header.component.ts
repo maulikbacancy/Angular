@@ -18,7 +18,8 @@ export class HeaderComponent implements OnInit {
     this.navbarOpen = !this.navbarOpen;
   }
 
-  onbuttonClick() {
-    this.navbarOpen = false;
+  onSelect() {
+    this.navbarOpen = false;    
   }
+
 }

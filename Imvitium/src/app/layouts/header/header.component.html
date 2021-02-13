@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark text-center">
   <button 
-    style="background-color: #394e78;" 
+    style="background-color: #452860;" 
     class="navbar-toggler" 
     type="button" 
     (click)="toggleNavbar()"  
@@ -13,12 +13,12 @@
   </button>
 
   <div class="collapse navbar-collapse" [ngClass] ="{'show': navbarOpen}"  [ngStyle]="{'margin-left' : navbarOpen ? '0px' : '30px'}">
-      <ul class=" navbar-nav" >
+      <ul class=" navbar-nav" (click)="onSelect()">
         <li 
           class="nav-item"
           [ngStyle]="{'margin-right' : navbarOpen ? '0px' : '10px'}">
           <a 
-            class="nav-link"  
+            class="nav-link"
             routerLinkActive="active"
             [routerLink]="['/about']" >ABOUT</a>
         </li>
@@ -40,7 +40,7 @@
   </div>
   
   <div class="collapse navbar-collapse" [ngClass] ="{'show': navbarOpen}"  [ngStyle]="{'margin-right' : navbarOpen ? '0px' : '30px'}">
-    <ul class=" navbar-nav ml-auto">
+    <ul class=" navbar-nav ml-auto" (click)="onSelect()">
       <li 
         class="nav-item" 
         [ngStyle]="{'margin-right' : navbarOpen ? '0px' : '70px'}">
