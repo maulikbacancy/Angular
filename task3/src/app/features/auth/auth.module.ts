@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AuthComponent } from './auth.component';
-import { SharedModule } from 'src/app/core/modules/shared.module';
+import { SharedModule } from '../../core/modules/shared.module';
 
 
 

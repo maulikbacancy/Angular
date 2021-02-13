@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { CartService } from 'src/app/core/sevices/cart.service';
-import { Product } from 'src/app/core/models/product.model';
-import { ProductService } from 'src/app/core/sevices/product.service';
+import { CartService } from '../../core/sevices/cart.service';
+import { Product } from '../../core/models/product.model';
+import { ProductService } from '../../core/sevices/product.service';
 
 @Component({
   selector: 'app-product-list',

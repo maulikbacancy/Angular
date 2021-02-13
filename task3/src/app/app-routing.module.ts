@@ -1,10 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CartComponent } from './components/cart/cart.component';
-import { EditProductComponent } from './components/edit-product/edit-product.component';
-import { ProductListComponent } from './components/product-list/product-list.component';
-import { AuthComponent } from './features/auth/auth.component';
-import { AuthGuard } from './features/auth/auth.guard';
 
 const routes: Routes = [
   {path: '', redirectTo: 'product', pathMatch: 'full'},

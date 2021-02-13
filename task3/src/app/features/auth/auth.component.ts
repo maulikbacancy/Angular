@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
-import { AuthResponseData, AuthService } from 'src/app/core/sevices/auth.service';
+import { AuthResponseData, AuthService } from '../../core/sevices/auth.service';
 
 @Component({
   selector: 'app-auth',

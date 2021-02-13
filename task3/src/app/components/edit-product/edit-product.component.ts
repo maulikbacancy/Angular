@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Product } from 'src/app/core/models/product.model';
-import { ProductService } from 'src/app/core/sevices/product.service';
+import { Product } from '../../core/models/product.model';
+import { ProductService } from '../../core/sevices/product.service';
 
 @Component({
   selector: 'app-edit-product',

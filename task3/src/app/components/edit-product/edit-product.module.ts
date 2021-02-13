@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { EditProductComponent } from './edit-product.component';
 import { RouterModule } from '@angular/router';
-import { AuthGuard } from 'src/app/features/auth/auth.guard';
-import { FormsModule } from '@angular/forms';
-import { SharedModule } from 'src/app/core/modules/shared.module';
+import { AuthGuard } from '../../features/auth/auth.guard';
+import { SharedModule } from '../../core/modules/shared.module';
 
 
 
