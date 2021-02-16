@@ -5,59 +5,70 @@
       <app-loading-spinner></app-loading-spinner>
     </div>
   </div>
-    <div class="row justify-content-center">
-        <div class="col-lg-6 col-md-5 col-sm-10">
-          
-          <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
-            <h1 class="text-center">Authentication</h1>
-            <div class="form-group">
-                <label for="email">email</label>
-                <input
-                  type="text"
-                  name="email"
-                  class="form-control"
-                  ngModel
-                  required
-                  
-                  #email="ngModel"
-                  [ngClass]="{ 'is-invalid': email.touched && email.invalid , 'is-valid': !email.invalid }"
-                />
-                <div class="invalid-feedback text-right" *ngIf="email.invalid && email.touched">
-                  <p *ngIf="email.errors.required">Email is required</p>
-                </div>
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-5 col-sm-10">
+      
+      <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+        <h1 class="text-center">Authentication</h1>
+        <div class="form-group">
+            <label for="email">email</label>
+            <input
+              type="text"
+              name="email"
+              class="form-control"
+              ngModel
+              required
+              
+              #email="ngModel"
+              [ngClass]="{ 'is-invalid': email.touched && email.invalid , 'is-valid': !email.invalid }"
+            />
+            <div class="invalid-feedback text-right" *ngIf="email.invalid && email.touched">
+              <p *ngIf="email.errors.required">Email is required</p>
             </div>
-            <div class="form-group text-left">
-                <label for="password">Password</label>
-                <input
-                  type="password"
-                  name="password"
-                  class="form-control"
-                  ngModel
-                  required
-                  validateEqual="confirmPassword"
-                  reverse="true"
-                  #password="ngModel"
-                  
-                  [ngClass]="{ 'is-invalid': password.touched && password.invalid , 'is-valid': !password.invalid }"
-                />
-                <div class="invalid-feedback text-right" *ngIf="password.invalid && password.touched">
-                  <p *ngIf="password.errors.required">password is required</p>
-                </div>
-            </div>
-            <div>
-              <button
-                class="btn btn-primary"
-                type="submit"
-                [disabled]="!authForm.valid"
-              >
-                {{ isLoginMode ? 'Login' : 'Sign Up' }}
-              </button>
-              |
-              <button class="btn btn-primary" (click)="onSwitchMode()" type="button">
-                Switch to {{ isLoginMode ? 'Sign Up' : 'Login' }}
-              </button>
-            </div>
-          </form>
         </div>
-      </div>
+        <div class="form-group text-left">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              name="password"
+              class="form-control"
+              ngModel
+              required
+              validateEqual="confirmPassword"
+              reverse="true"
+              #password="ngModel"
+              
+              [ngClass]="{ 'is-invalid': password.touched && password.invalid , 'is-valid': !password.invalid }"
+            />
+            <div class="invalid-feedback text-right" *ngIf="password.invalid && password.touched">
+              <p *ngIf="password.errors.required">password is required</p>
+            </div>
+        </div>
+        <div>
+          <button
+            class="btn btn-primary"
+            type="submit"
+            [disabled]="!authForm.valid"
+          >
+            {{ isLoginMode ? 'Login' : 'Sign Up' }}
+          </button>
+          |
+          <button class="btn btn-primary" (click)="onSwitchMode()" type="button">
+            Switch to {{ isLoginMode ? 'Sign Up' : 'Login' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <br>
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-5 col-sm-10">
+      <p>
+        email    : eve.holt@reqres.in
+      </p>
+      <p>
+        password : any
+      </p>
+    </div>
+  </div>
 </div>

@@ -14,6 +14,7 @@
                     <input
                       type="text"
                       name="title"
+                      required
                       class="form-control"
                       [(ngModel)]=" product.title"
                     />
@@ -23,6 +24,7 @@
                     <input
                       type="text"
                       name="price"
+                      required
                       class="form-control"
                       [(ngModel)]="product.price"
                     />
@@ -34,6 +36,7 @@
                       name="image"
                       id="imagePath"
                       class="form-control"
+                      required
                       [(ngModel)]="product.image"
                     />
                 </div>
@@ -51,6 +54,7 @@
                     <textarea
                       type="text"
                       name="description"
+                      required
                       class="form-control"
                       [(ngModel)]="product.description"
                       rows=4

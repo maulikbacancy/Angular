@@ -11,9 +11,9 @@ import { ProductService } from '../../core/sevices/product.service';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
-  isAuthenticated = false;
+  public isAuthenticated = false;
   private userSub: Subscription;
-  productTitle:string;
+  public productTitle:string;
 
   constructor(
       private authService: AuthService, 
@@ -26,15 +26,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
   }
 
-  onLogout() {
+  public onLogout(): void {
     this.authService.logout();
   }
 
-  ngOnDestroy() {
-    this.userSub.unsubscribe();
-  }
-
-  search() {
+  public search(): void {
     this.productService.productTitle.next(this.productTitle);
+  }
+  
+  ngOnDestroy(): void {
+    this.userSub.unsubscribe();
   }
 }

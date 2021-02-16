@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { AuthResponseData, AuthService } from '../../core/sevices/auth.service';
 
 @Component({
@@ -12,8 +12,8 @@ import { AuthResponseData, AuthService } from '../../core/sevices/auth.service';
 })
 export class AuthComponent implements OnInit,OnDestroy {
 
-  isLoginMode = true;
-  error: string = null;
+  public isLoginMode = true;
+  private authObsSubscription: Subscription;
 
   constructor(
     private authService: AuthService,
@@ -24,11 +24,11 @@ export class AuthComponent implements OnInit,OnDestroy {
   ngOnInit(): void {
   }
 
-  onSwitchMode() {
+  public onSwitchMode(): void {
     this.isLoginMode = !this.isLoginMode;
   }
 
-  onSubmit(form: NgForm) {
+  public onSubmit(form: NgForm): void {
     if (!form.valid) {
       return;
     }
@@ -43,7 +43,7 @@ export class AuthComponent implements OnInit,OnDestroy {
       authObs = this.authService.signup(email, password);
     }
 
-    authObs.subscribe(
+    this.authObsSubscription = authObs.subscribe(
       resData => {
         console.log(resData);
         this.router.navigate(['product']);
@@ -54,8 +54,8 @@ export class AuthComponent implements OnInit,OnDestroy {
     form.reset();
   }
 
-  ngOnDestroy() {
-
+  ngOnDestroy(): void {
+    this.authObsSubscription.unsubscribe();
   }
 
 

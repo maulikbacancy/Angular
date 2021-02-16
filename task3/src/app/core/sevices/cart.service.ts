@@ -26,4 +26,12 @@ export class CartService {
   public deleteCart(): Observable<ProductCart> {
     return this.http.delete<ProductCart>(this._url+'/6');
   }
+
+  public updateQuantity(productId: number, quantity: number): Observable<ProductCart> {
+    return this.http.put<ProductCart>(this._url+'/7', {
+      userId: 3,
+      date: new Date(),
+      products: [{ productId: productId, quantity: quantity }],
+    });
+  }
 }

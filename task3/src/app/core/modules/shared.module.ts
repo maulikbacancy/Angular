@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
+import { HttpClientModule } from '@angular/common/http';
 import { LoadingSpinnerComponent } from "../loading-spinner/loading-spinner.component";
 
 @NgModule({
@@ -9,12 +10,14 @@ import { LoadingSpinnerComponent } from "../loading-spinner/loading-spinner.comp
     ],
     imports: [
       CommonModule,
-      FormsModule
+      FormsModule,
+      HttpClientModule
     ],
     exports: [
       LoadingSpinnerComponent,
       CommonModule,
-      FormsModule
+      FormsModule,
+      HttpClientModule
     ]
   })
   export class SharedModule {}

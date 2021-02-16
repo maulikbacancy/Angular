@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
 import { Product } from '../../core/models/product.model';
 import { ProductService } from '../../core/sevices/product.service';
 
@@ -10,8 +11,9 @@ import { ProductService } from '../../core/sevices/product.service';
   templateUrl: './edit-product.component.html',
   styleUrls: ['./edit-product.component.css']
 })
-export class EditProductComponent implements OnInit {
+export class EditProductComponent implements OnInit, OnDestroy {
   public product = new Product('','','','','','');
+  private subscription: Subscription;
 
   constructor(
     private productService: ProductService, 
@@ -23,12 +25,16 @@ export class EditProductComponent implements OnInit {
   }
 
   public onSubmit(form: NgForm): void {
-    this.productService.editProduct(this.product).subscribe(res => {
+    this.subscription = this.productService.editProduct(this.product).subscribe(res => {
       this.toastr.success('Product Updated', 'Successfull!');
       this.router.navigate(['product']);
       form.resetForm();
     });
     
+  }
+
+  ngOnDestroy():void {
+    this.subscription.unsubscribe();
   }
 
 }
