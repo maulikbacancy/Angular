@@ -46,12 +46,14 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
   public onDeleteProduct(id: string): void {
     let subscription: Subscription;
+    let product: Product;
+    product = this.products.find(e => e.id === id);
     if (confirm('Are you sure want to delete ?')) {
       subscription = this.productService.deleteProduct(id).subscribe(res => {
         this.products = this.products.filter(
           (value) => value.id !== id
         );
-        this.toastr.warning('Product was deleted!','Deleted');
+        this.toastr.warning(product.title+' was deleted!','Deleted');
       });
     }
     this.subscriptions.push(subscription);
@@ -64,8 +66,10 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
   public onAddToCart(id: String): void {
     let subscription: Subscription;
+    let product: Product;
+    product = this.products.find(e => e.id === id);
     subscription = this.cartService.addToCart(id).subscribe(res => {
-      this.toastr.success('Product added successfully!','Successfull');
+      this.toastr.success(product.title+'added successfully!','Successfull');
     });
     this.subscriptions.push(subscription);
   }
