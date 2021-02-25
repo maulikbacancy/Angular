@@ -30,4 +30,8 @@ export class ProductService {
     return this.http.put<Product>(this._url + '/' + product.id, product);
   }
 
+  public addProduct(product: Product): Observable<Product> {
+    return this.http.post<Product>(this._url, product);
+  }
+
 }

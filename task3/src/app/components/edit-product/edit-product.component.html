@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-6">
             <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
-                <h1 class="text-center">Edit Product</h1>
+                <h1 class="text-center">{{editMode ? 'Edit Product' : 'Add Product'}}</h1>
                 
                 <div class="form-group">
                     <label for="title">Title</label>
@@ -16,8 +16,13 @@
                       name="title"
                       required
                       class="form-control"
+                      #title="ngModel"
+                      [ngClass]="{ 'is-invalid': title.touched && title.invalid , 'is-valid': !title.invalid }"
                       [(ngModel)]=" product.title"
                     />
+                    <div class="invalid-feedback text-right" *ngIf="title.invalid && title.touched">
+                      <p *ngIf="title.errors.required">Title is required</p>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="price">Price</label>
@@ -26,8 +31,13 @@
                       name="price"
                       required
                       class="form-control"
+                      #price="ngModel"
+                      [ngClass]="{ 'is-invalid': price.touched && price.invalid , 'is-valid': !price.invalid }"
                       [(ngModel)]="product.price"
                     />
+                    <div class="invalid-feedback text-right" *ngIf="price.invalid && price.touched">
+                      <p *ngIf="price.errors.required">Price is required</p>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="imagePath">Image URL</label>
@@ -37,8 +47,13 @@
                       id="imagePath"
                       class="form-control"
                       required
+                      #image="ngModel"
+                      [ngClass]="{ 'is-invalid': image.touched && image.invalid , 'is-valid': !image.invalid }"
                       [(ngModel)]="product.image"
                     />
+                    <div class="invalid-feedback text-right" *ngIf="image.invalid && image.touched">
+                      <p *ngIf="image.errors.required">Image URL is required</p>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col">
@@ -56,10 +71,15 @@
                       name="description"
                       required
                       class="form-control"
+                      #description="ngModel"
+                      [ngClass]="{ 'is-invalid': description.touched && description.invalid , 'is-valid': !description.invalid }"
                       [(ngModel)]="product.description"
                       rows=4
                     >
                     </textarea>
+                    <div class="invalid-feedback text-right" *ngIf="description.invalid && description.touched">
+                      <p *ngIf="description.errors.required">Description is required</p>
+                    </div>
                 </div>
                 
                 <div>

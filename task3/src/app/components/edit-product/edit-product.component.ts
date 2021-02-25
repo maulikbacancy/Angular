@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { Product } from '../../core/models/product.model';
@@ -14,27 +14,46 @@ import { ProductService } from '../../core/sevices/product.service';
 export class EditProductComponent implements OnInit, OnDestroy {
   public product = new Product('','','','','','');
   private subscription: Subscription;
+  public editMode = false;
 
   constructor(
     private productService: ProductService, 
     private router: Router,
+    private route: ActivatedRoute,
     private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.product = this.productService.editableProduct;
+    this.route.params.subscribe((params: Params) => {
+      this.editMode = params['id'] !== 'new';
+      if(this.editMode) {
+        this.product = this.productService.editableProduct;
+      }
+    });
+
   }
 
   public onSubmit(form: NgForm): void {
-    this.subscription = this.productService.editProduct(this.product).subscribe(res => {
-      this.toastr.success('Product Updated', 'Successfull!');
-      this.router.navigate(['product']);
-      form.resetForm();
-    });
+    if(this.editMode) {
+      this.subscription = this.productService.editProduct(this.product).subscribe(res => {
+        this.toastr.success('Product Updated', 'Successfull!');
+        this.router.navigate(['product']);
+        form.resetForm();
+      });
+    }
+    else {
+      this.subscription = this.productService.addProduct(this.product).subscribe(res => {
+        this.toastr.success(this.product.title+' added successfull', 'Successfull!');
+        this.router.navigate(['product']);
+        form.resetForm();
+      });
+    }
     
   }
 
   ngOnDestroy():void {
-    this.subscription.unsubscribe();
+    if(!!this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
 }
