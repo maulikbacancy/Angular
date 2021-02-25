@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../core/sevices/auth.service';
 import { ProductService } from '../../core/sevices/product.service';
@@ -14,10 +14,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public isAuthenticated = false;
   private userSub: Subscription;
   public productTitle:string;
+  public searchShow = true;
 
   constructor(
       private authService: AuthService, 
-      private router: Router,
+      private route: ActivatedRoute,
       private productService: ProductService) { }
 
   ngOnInit(): void {

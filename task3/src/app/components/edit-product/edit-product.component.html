@@ -88,7 +88,7 @@
                     type="submit"
                     [disabled]="!authForm.valid"
                   >
-                    Edit Product
+                    {{editMode ? 'Edit Product' : 'Add Product'}}
                   </button>
                 </div>
               </form>
