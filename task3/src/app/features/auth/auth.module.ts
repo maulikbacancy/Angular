@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AuthComponent } from './auth.component';
 import { SharedModule } from '../../core/modules/shared.module';
+import { LoggedinGuard } from 'src/app/core/guard/loggedin.guard';
 
 
 
@@ -13,7 +14,7 @@ import { SharedModule } from '../../core/modules/shared.module';
     CommonModule,
     FormsModule,
     SharedModule,
-    RouterModule.forChild([{ path: '', component: AuthComponent }])
+    RouterModule.forChild([{ path: '', component: AuthComponent , canActivate: [LoggedinGuard]}])
   ]
 })
 export class AuthModule { }

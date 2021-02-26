@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CartComponent } from './cart.component';
-import { AuthGuard } from '../../features/auth/auth.guard';
+import { AuthGuard } from '../../core/guard/auth.guard';
 import { SharedModule } from '../../core/modules/shared.module';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 

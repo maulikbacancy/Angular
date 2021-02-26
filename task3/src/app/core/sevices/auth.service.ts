@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import {  tap } from 'rxjs/operators';
@@ -51,26 +51,6 @@ export class AuthService {
           this.handleAuthentication(email,resData.token);
         })
       );
-  }
-
-  public autoLogin(): void {
-    const userData: {
-      email: string;
-      _token: string;
-    } = JSON.parse(localStorage.getItem('userData'));
-    if (!userData) {
-      return;
-    }
-
-    const loadedUser = new User(
-      userData.email,
-      userData._token
-    );
-
-    if (loadedUser.token) {
-      this.user.next(loadedUser);
-      this.router.navigate(['/product']);
-    }
   }
 
   public logout(): void {

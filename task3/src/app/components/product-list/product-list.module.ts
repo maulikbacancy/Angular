@@ -4,7 +4,7 @@ import { RouterModule } from "@angular/router";
 import { Ng2SearchPipeModule } from "ng2-search-filter";
 import { NgxPaginationModule } from "ngx-pagination";
 import { SharedModule } from "../../core/modules/shared.module";
-import { AuthGuard } from "../../features/auth/auth.guard";
+import { AuthGuard } from "../../core/guard/auth.guard";
 import { ProductListComponent } from "./product-list.component";
 
 @NgModule({

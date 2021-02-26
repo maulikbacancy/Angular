@@ -4,6 +4,7 @@ import { Product, ProductCart } from '../../core//models/product.model';
 import { ProductService } from '../../core/sevices/product.service';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
