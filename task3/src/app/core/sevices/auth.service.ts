@@ -53,6 +53,27 @@ export class AuthService {
       );
   }
 
+  public isAuthenticated(): boolean {
+    const userData: {
+      email: string;
+      _token: string;
+    } = JSON.parse(localStorage.getItem('userData'));
+    if (!userData) {        
+      return false;
+    }
+    else {
+      const loadedUser = new User(
+        userData.email,
+        userData._token
+      );
+  
+      if (loadedUser.token) {        
+        this.user.next(loadedUser);
+        return true;
+      }        
+    }
+  }
+
   public logout(): void {
     this.user.next(null);
     this.router.navigate(['/auth']);
