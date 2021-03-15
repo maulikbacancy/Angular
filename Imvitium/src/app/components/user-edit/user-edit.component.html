@@ -1,0 +1,163 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-5 col-lg-5 col-sm-12 left-block">
+            <h1>Account</h1>
+            <form userForm="ngForm">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group text-left">
+                            <label for="email">email</label>
+                            <input
+                                type="text"
+                                name="email"
+                                class="form-control"
+                                ngModel
+                                required
+                                [disabled]="isDisable"
+                                pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                #email="ngModel"
+                                [ngClass]="{ 'is-invalid': email.touched && email.invalid }"
+                            />
+                            <div class="invalid-feedback text-right" *ngIf="email.invalid && email.touched">
+                                <p *ngIf="email.errors.required">Email is required</p>
+                                <p *ngIf="email.errors.pattern">Email is not valid</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group text-left">
+                            <label for="paymethod">Payment Method</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                ngModel
+                                [disabled]="isDisable"
+                                #paymethod="ngModel"
+                                name="paymethod"
+                            />
+                        </div>    
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group text-left">
+                            <label for="username">username</label>
+                            <input
+                                type="text"
+                                name="username"
+                                class="form-control"
+                                ngModel
+                                required
+                                [disabled]="isDisable"
+                                #username="ngModel"
+                                pattern="^[a-z0-9_-]{6,16}$"
+                                [ngClass]="{ 'is-invalid': username.touched && username.invalid}"
+                            />
+                            <div class="invalid-feedback text-right" *ngIf="username.invalid && username.touched">
+                                <p *ngIf="username.errors.required">username is required</p>
+                                <p *ngIf="username.errors.pattern">username is not valid</p>
+                            </div>
+                            </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group text-left">
+                            <label for="renewdate">Renew Date</label>
+                            <input
+                                type="date"
+                                class="form-control"
+                                ngModel
+                                [disabled]="isDisable"
+                                #renewdate="ngModel"
+                                name="renewdate"
+                            />
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-6">
+                        <div class="form-group">
+                            <button 
+                              class="btn"
+                              type="submit"
+                              (click)="onSave()">
+                              {{isDisable ? 'EDIT' : 'SAVE'}}
+                            </button>
+                          </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-6">
+                        <div class="form-group">
+                            <button 
+                              class="btn"
+                              type="button"
+                              *ngIf="!isDisable"
+                              (click)="onCancel()">
+                              CANCEL
+                            </button>
+                          </div>
+                    </div>
+                    <div class="col-lg-12 col-sm-12">
+                        <div class="link">
+                            <a>
+                                <u>Change Password?</u>
+                            </a>
+                            <a>
+                                <u>Contact US</u>
+                            </a>
+                        </div>
+                    </div>
+                    
+                </div>
+            </form>
+        </div>
+        <div class="col-md-7 col-lg-7 col-sm-12 right-block">
+            <h1>My Apps</h1>
+            <div class="row" style="margin-top: 10px;">
+                <div class="col-lg-5 col-sm-6 right-text">
+                    <div class="form-group">
+                        <div style="cursor: pointer;">
+                            <img alt="" class="img-class" src="assets/repositoryLogo.png">
+                            Repositary
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7 col-sm-6 left-text">
+                    <div class="form-group">
+                        <button 
+                          class="btn"
+                          type="button">
+                          LAUNCH
+                        </button>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-lg-6 left-bottom-block">
+            <h2>UPDATES/NEWS</h2>
+            <ul class="list">
+                <li>
+                    <span>This is a DEMO build. Expect some bugs. Please MSG me with them.</span>
+                    <strong>01.12.2020</strong>
+                </li>
+                <li>
+                    <span>Filings portion NOT completed. Don't select Filings tab.</span>
+                    <strong>01.12.2020</strong>
+                </li>
+                <li  >
+                    <span>Do NOT use Twitter share functionality within Repository.</span>
+                    <strong>01.12.2020</strong>
+                </li>
+                <li  >
+                    <span>Expect up to a 15 minute delay to receive verification email.</span>
+                    <strong>01.12.2020</strong>
+                </li>
+                <li  >
+                    <span>Newest News Add TEST.</span>
+                    <strong>01.22.2020</strong>
+                </li>
+                <li>
+                    <span>fgtrrttvcvcvv</span>
+                    <strong>01.05.2021</strong>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-6 col-lg-6"></div>
+    </div>
+</div>

@@ -7,6 +7,7 @@ import { ForgotPasswordComponent } from "./forgot-password/forgot-password.compo
 import { LoginComponent } from "./login/login.component";
 import { EqualValidator } from "./signup/equal-validator.directive";
 import { SignupComponent } from "./signup/signup.component";
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
     declarations: [
@@ -14,7 +15,8 @@ import { SignupComponent } from "./signup/signup.component";
         LoginComponent,
         SignupComponent,
         ForgotPasswordComponent,
-        EqualValidator
+        EqualValidator,
+        ChangePasswordComponent
     ],
     imports: [
         CommonModule,
@@ -26,7 +28,8 @@ import { SignupComponent } from "./signup/signup.component";
                 children: [
                     {path: 'login', component: LoginComponent},
                     {path: 'signup', component: SignupComponent},
-                    {path: 'forgotpassword', component: ForgotPasswordComponent},    
+                    {path: 'forgotpassword', component: ForgotPasswordComponent},
+                    {path: 'changepassword', component: ChangePasswordComponent}    
                 ]
             }
 

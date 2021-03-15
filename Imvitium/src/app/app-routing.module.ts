@@ -23,6 +23,14 @@ const routes: Routes = [
     path: "auth",
     loadChildren: () => import("./features/auth/auth.module").then(m => m.AuthModule)
   },
+  {
+    path: "useredit",
+    loadChildren: () => import("./components/user-edit/user-edit.module").then(m => m.UserEditModule)
+  },
+  {
+    path: "admin",
+    loadChildren: () => import("./components/admin/admin.module").then(m => m.AdminModule)
+  },
   
 ];
 

@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  toggleNavbar() {
+  public toggleNavbar(): void {
     this.navbarOpen = !this.navbarOpen;
   }
 
