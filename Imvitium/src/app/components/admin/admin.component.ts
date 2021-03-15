@@ -25,7 +25,6 @@ export class AdminComponent implements OnInit {
   }
 
   private getUserList(pageNumber: number,searchString: string): void {
-    this.current_page = 1;
     this.adminService.getUserList(pageNumber,searchString).subscribe(
       (res: UserListModel) => {
         this.users = res.data.data;
@@ -35,7 +34,6 @@ export class AdminComponent implements OnInit {
   }
 
   private getUserListByType(pageNumber: number,subscription: string,searchString:string): void {
-    this.current_page = 1;
     this.adminService.getUserListByType(pageNumber,searchString,subscription).subscribe(
       (res: UserListModel) => {
         this.users = res.data.data;
@@ -81,5 +79,17 @@ export class AdminComponent implements OnInit {
 
   public getIndex(n: number): Array<number> {
     return Array(n);
+  }
+
+  public onApplyFilter(subscription: string): void {
+    if(subscription == this.subscription) {
+      this.subscription = '';
+      this.current_page = 1;
+    }
+    else {
+      this.current_page = 1;
+      this.subscription = subscription;
+    }
+    this.onChangePage(1);
   }
 }

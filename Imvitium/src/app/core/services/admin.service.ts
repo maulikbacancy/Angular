@@ -8,7 +8,7 @@ import { UserListModel } from '../models/userList.model';
 })
 export class AdminService {
 
-  private readonly _url = "http://809b8cfe7673.ngrok.io/";
+  private readonly _url = "https://809b8cfe7673.ngrok.io/";
 
   constructor(private http: HttpClient) { }
 

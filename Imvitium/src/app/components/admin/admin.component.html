@@ -18,20 +18,20 @@
                         <li >
                           <a
                             [ngClass]="subscription === 'subscribe'? 'active': ''"
-                            (click)="subscription='subscribe'; onChangePage(1)"
+                            (click)="onApplyFilter('subscribe')"
                             >SUBSCRIBE</a>
                             <img alt="" class="img-class" src="assets/star-bullets.png">
                         </li>
                         
                         <li >
                           <a 
-                            (click)="subscription='unsubscribe'; onChangePage(1)"
+                            (click)="onApplyFilter('unsubscribe')"
                             [ngClass]="subscription === 'unsubscribe'? 'active': ''">UNSUBSCRIBE</a>
                             <img alt="" class="img-class" src="assets/star-bullets.png"> 
                         </li>
                         <li>
                             <a 
-                                (click)="subscription='free'; onChangePage(1)"
+                                (click)="onApplyFilter('free')"
                                 [ngClass]="subscription === 'free'? 'active': ''">FREE</a>
                         </li>
                     </ul>
