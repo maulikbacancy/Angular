@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UserModel } from 'src/app/core/models/user.model';
-import { UserListModel } from 'src/app/core/models/userList.model';
-import { AdminService } from 'src/app/core/services/admin.service';
+import { UserModel } from '../../core/models/user.model';
+import { UserListModel } from '../../core/models/userList.model';
+import { AdminService } from '../../core/services/admin.service';
 
 @Component({
   selector: 'app-admin',
