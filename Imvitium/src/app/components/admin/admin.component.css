@@ -195,14 +195,78 @@ border-radius: 10px;
 background: #394E78; 
 }
 
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 50;
+  }
+  
+  .alert-box {
+    position: fixed;
+    top: 27vh;
+    left: 30vw;
+    width: 40vw;
+    padding: 16px;
+    border-radius: 15px;
+    z-index: 1000;
+    background: #394E78;
+    box-shadow: 0 2px 8px rbga(0, 0, 0, 0.26);
+  }
+  
+  .alert-box-actions input{
+    text-align: left;
+    background-color: #85D6DD;
+    border-radius: 25px;
+  }
+  .alert-box-actions select{
+    text-align: left;
+    background-color: #85D6DD;
+    border-radius: 25px;
+  }
+  .alert-box-actions button{
+    background-color: #85D6DD;
+    border-radius: 25px;
+  }
+
+  .popupCloseButton {
+    color: black;
+    background-color: white;
+    border-radius: 50px;
+    cursor: pointer;
+    display: inline-block;
+    font-family: arial;
+    font-weight: bold;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 20px;
+    line-height: 25px;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+  }
+  .popupCloseButton:hover {
+    background-color: grey;
+  }
+
 @media (max-width: 800px) {
     .right-block {
         padding-right: unset;
     }
     .left-block {
         padding-left: unset;
+        margin-left: 10px;
     }
     .search-input {
         float: left;
+    }
+
+    .alert-box {
+       left: 20vw;
+        width: 60vw;
     }
 }
