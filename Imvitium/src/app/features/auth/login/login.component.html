@@ -14,7 +14,7 @@
 
           <h2>LOGIN</h2>
 
-          <form #authForm="ngForm">
+          <form #form="ngForm" (ngSubmit)="form.form.valid && onSubmitForm(form)">
 
             <div class="form-group text-left">
               <label for="email">email | username</label>
@@ -64,7 +64,7 @@
                 <button
                   class="btn"
                   type="submit"
-                  [disabled]="!authForm.valid"
+                  [disabled]="!form.valid"
                 >
                 LOGIN
               </button>

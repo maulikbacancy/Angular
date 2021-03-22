@@ -6,6 +6,10 @@ export class UserModel {
         public username: string,
         public type: string,
         public account_type: string,
-        public date: string
+        public date?: string,
+        public email_verified?: number,
+        public created_at?: string,
+        public updated_at?: string,
+        public record_deleted?: number
     ) {}
 }

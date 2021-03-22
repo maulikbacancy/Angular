@@ -8,7 +8,7 @@
       </div>
     </div>
     <div class="col-md-5 col-xl-4 col-sm-12 text-center">
-        <form #form="ngForm">
+        <form #form="ngForm" (ngSubmit)="form.form.valid && onSubmitForm(form)">
           <h2>SIGN UP</h2>
 
           <div class="form-group text-left">

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { EditUserModel } from 'src/app/core/models/edituser.model';
 import { NewsModel } from 'src/app/core/models/news.model';
 import { UserModel } from '../../core/models/user.model';
@@ -14,7 +15,7 @@ import { AdminService } from '../../core/services/admin.service';
 
 
 
-export class AdminComponent implements OnInit {
+export class AdminComponent implements OnInit, OnDestroy {
 
   public youtube_link = "youtube link will display here";
   public users: UserModel[];
@@ -28,6 +29,7 @@ export class AdminComponent implements OnInit {
   public news: NewsModel[];
   public newsForm: FormGroup;
   public newsArray: FormArray;
+  private subscriptions: Subscription[] = [];
 
   constructor(private adminService: AdminService) { }
 
@@ -45,40 +47,50 @@ export class AdminComponent implements OnInit {
   }
 
   private getUserList(pageNumber: number,searchString: string): void {
-    this.adminService.getUserList(pageNumber,searchString).subscribe(
+    let subscription: Subscription;
+    subscription = this.adminService.getUserList(pageNumber,searchString).subscribe(
       (res: UserListModel) => {
         this.users = res.data.data;
         this.total_page = res.data.last_page;
       }
-    )
+    );
+    this.subscriptions.push(subscription);
   }
 
-  private getUserListByType(pageNumber: number,subscription: string,searchString:string): void {
-    this.adminService.getUserListByType(pageNumber,searchString,subscription).subscribe(
+  private getUserListByType(pageNumber: number,subscription_1: string,searchString:string): void {
+    let subscription: Subscription;
+    subscription = this.adminService.getUserListByType(pageNumber,searchString,subscription_1).subscribe(
       (res: UserListModel) => {
         this.users = res.data.data;
         this.total_page = res.data.last_page;
       }
-    )
+    );
+    this.subscriptions.push(subscription);
   }
 
   private getYoutubeLink(): void {
-    this.adminService.getYoutubeLink().subscribe(res => {
+    let subscription: Subscription;
+    subscription = this.adminService.getYoutubeLink().subscribe(res => {
       this.youtube_link = res;      
-    })
+    });
+    this.subscriptions.push(subscription);
   }
 
   private getTotalSubscribedUser(): void {
-    this.adminService.getTotalSubscribedUser().subscribe(res => {
+    let subscription: Subscription;
+    subscription = this.adminService.getTotalSubscribedUser().subscribe(res => {
       this.totalSubscribedUser = res;
     });
+    this.subscriptions.push(subscription);
   }
 
   private getNews(): void {
-    this.adminService.getNews().subscribe(res => {
+    let subscription: Subscription;
+    subscription = this.adminService.getNews().subscribe(res => {
       this.news = res;
       this.pushNewsToForm();
-    })
+    });
+    this.subscriptions.push(subscription);
   }
 
   private pushNewsToForm(): void {
@@ -95,9 +107,11 @@ export class AdminComponent implements OnInit {
   }
 
   public updateYoutubeLink(): void {
-    this.adminService.updateYoutubeLink(this.youtube_link).subscribe(res => {
+    let subscription: Subscription;
+    subscription = this.adminService.updateYoutubeLink(this.youtube_link).subscribe(res => {
       console.log(res);
-    })
+    });
+    this.subscriptions.push(subscription);
   }
 
   public onChangePage(pageNumber: number): void {
@@ -146,10 +160,12 @@ export class AdminComponent implements OnInit {
   }
 
   public onUpdateUser(): void {
-    this.adminService.updateUser(this.editUser.id,this.editUser.account_type).subscribe(res => {
+    let subscription: Subscription;
+    subscription = this.adminService.updateUser(this.editUser.id,this.editUser.account_type).subscribe(res => {
       console.log(res);
       this.editMode = false;
     });
+    this.subscriptions.push(subscription);
   }
 
   public onCloseDialogBox(): void {
@@ -170,11 +186,17 @@ export class AdminComponent implements OnInit {
       
     }
     else {
-      this.newsArray.push(
-        new FormGroup({
-          news: new FormControl({ value: '', disabled: false }, [Validators.required])
-        })
-      );
+      if(this.newsArray.length === this.news.length) {
+        this.newsArray.push(
+          new FormGroup({
+            news: new FormControl({ value: '', disabled: false }, [Validators.required])
+          })
+        );
+      }
+      else {
+        console.log('please save previous news');
+        
+      }
     }
            
   }
@@ -184,10 +206,12 @@ export class AdminComponent implements OnInit {
       this.newsArray.removeAt(i);
     }
     else {
-      this.adminService.deleteNews(this.news[i].id).subscribe(res => {
+      let subscription: Subscription;
+      subscription = this.adminService.deleteNews(this.news[i].id).subscribe(res => {
         this.news.splice(i, 1);
         this.newsArray.removeAt(i);
       });
+      this.subscriptions.push(subscription);
     }
     
   }
@@ -198,7 +222,8 @@ export class AdminComponent implements OnInit {
       this.newsArray.controls[i].enable();
     }
     else if(this.news.length <= i+1) {
-      this.adminService.addNews(this.newsArray.controls[i].value['news']).subscribe(res => {
+      let subscription: Subscription;
+      subscription = this.adminService.addNews(this.newsArray.controls[i].value['news']).subscribe(res => {
         this.news.push(res);
         this.newsArray.controls[i].disable();
       },
@@ -206,16 +231,23 @@ export class AdminComponent implements OnInit {
         console.log(error);
       }
       );
+      this.subscriptions.push(subscription);
     }
     else {
-      this.adminService.updateNews(this.news[i].id, this.newsArray.controls[i].value['news']).subscribe(res => {
+      let subscription: Subscription;
+      subscription = this.adminService.updateNews(this.news[i].id, this.newsArray.controls[i].value['news']).subscribe(res => {
         this.news[i].news_update = this.newsArray.controls[i].value['news'];
         this.newsArray.controls[i].disable();
         console.log(res);
       },
       (error) => {
         console.log(error);
-      })
+      });
+      this.subscriptions.push(subscription);
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 }
