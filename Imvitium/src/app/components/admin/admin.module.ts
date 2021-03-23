@@ -8,7 +8,7 @@ import { AdminComponent } from "./admin.component";
     declarations: [AdminComponent],
     imports: [
       CommonModule,
-      RouterModule.forChild([{ path: '', component: AdminComponent }]),
+      RouterModule.forChild([{ path: '', component: AdminComponent}]),
       FormsModule,
       HttpClientModule,
       ReactiveFormsModule

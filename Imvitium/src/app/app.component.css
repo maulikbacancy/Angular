@@ -5,3 +5,8 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
+
+.toast-success {
+    background-color: #394E78;
+    background-image: none !important;
+}

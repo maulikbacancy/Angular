@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { LoginUserModel } from 'src/app/core/models/login-user.model';
 import { AuthService } from 'src/app/core/services/auth.service';
 
@@ -11,7 +12,10 @@ import { AuthService } from 'src/app/core/services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(
+    private authService: AuthService, 
+    private router: Router,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -20,7 +24,8 @@ export class LoginComponent implements OnInit {
     
     this.authService.loginUser({email: form.value.email, password: form.value.password}).subscribe(
       (res: LoginUserModel) => {
-        this.authService.user.next(res);   
+        this.authService.user.next(res);
+        this.toastr.success(form.value.email,'Welcome!');   
         this.router.navigate(['/useredit']);  
       },
       (error) => {
