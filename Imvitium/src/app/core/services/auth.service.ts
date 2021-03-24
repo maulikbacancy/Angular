@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../../environments/environment';
 import { LoginUserModel } from '../models/login-user.model';
 import { SignUpUserModel } from '../models/signup-user.model';
 import { UserModel } from '../models/user.model';
