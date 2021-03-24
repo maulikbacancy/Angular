@@ -60,5 +60,9 @@ export class AdminService {
     return this.http.delete(environment.url + 'api/public/api/news/' + id);
   }
 
+  public deleteAllNews() {
+    return this.http.delete(environment.url+"api/public/api/newsall");
+  }
+
 
 }

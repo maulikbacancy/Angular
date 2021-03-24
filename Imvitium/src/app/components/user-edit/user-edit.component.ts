@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { NewsModel } from 'src/app/core/models/news.model';
-import { UserModel } from 'src/app/core/models/user.model';
-import { AdminService } from 'src/app/core/services/admin.service';
-import { AuthService } from 'src/app/core/services/auth.service';
+import { NewsModel } from '../../core/models/news.model';
+import { UserModel } from '../../core/models/user.model';
+import { AdminService } from '../../core/services/admin.service';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-user-edit',

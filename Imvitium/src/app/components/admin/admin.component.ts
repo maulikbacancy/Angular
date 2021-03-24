@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { EditUserModel } from 'src/app/core/models/edituser.model';
-import { NewsModel } from 'src/app/core/models/news.model';
+import { EditUserModel } from '../../core/models/edituser.model';
+import { NewsModel } from '../../core/models/news.model';
 import { UserModel } from '../../core/models/user.model';
 import { UserListModel } from '../../core/models/userList.model';
 import { AdminService } from '../../core/services/admin.service';
@@ -181,9 +181,15 @@ export class AdminComponent implements OnInit, OnDestroy {
   }
 
   public onAddNews() {
-    if(this.newsArray.controls[this.newsArray.length-1].value['news'] === '') {
+    if(this.newsArray.length === 0) {
+      this.newsArray.push(
+        new FormGroup({
+          news: new FormControl({ value: '', disabled: false }, [Validators.required])
+        })
+      );
+    }
+    else if(this.newsArray.controls[this.newsArray.length-1].value['news'] === '') {
       console.log('please enter news in previous node');
-      
     }
     else {
       if(this.newsArray.length === this.news.length) {
@@ -214,6 +220,13 @@ export class AdminComponent implements OnInit, OnDestroy {
       this.subscriptions.push(subscription);
     }
     
+  }
+
+  public deleteAllNews(): void {
+    this.adminService.deleteAllNews().subscribe(res => {
+      console.log(res);
+      this.news.length = 0; 
+    });
   }
 
   public onNewsEdit(i: number): void {

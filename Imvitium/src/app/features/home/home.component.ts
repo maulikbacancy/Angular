@@ -1,8 +1,8 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { NewsModel } from 'src/app/core/models/news.model';
-import { AdminService } from 'src/app/core/services/admin.service';
+import { NewsModel } from '../../core/models/news.model';
+import { AdminService } from '../../core/services/admin.service';
 
 @Component({
   selector: 'app-home',

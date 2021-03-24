@@ -12,4 +12,8 @@ export class ContactComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  private onContactClick(): void {
+    window.open("https://discord.gg/XzAkM7qHYF","_blank");
+  }
+
 }
