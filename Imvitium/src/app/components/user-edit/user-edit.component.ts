@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { NewsModel } from '../../core/models/news.model';
 import { UserModel } from '../../core/models/user.model';
 import { AdminService } from '../../core/services/admin.service';
@@ -10,11 +10,12 @@ import { AuthService } from '../../core/services/auth.service';
   templateUrl: './user-edit.component.html',
   styleUrls: ['./user-edit.component.css']
 })
-export class UserEditComponent implements OnInit {
+export class UserEditComponent implements OnInit, OnDestroy {
 
   public isDisable = true;
   public newss: NewsModel[];
   public user = new UserModel('','','','','','');
+  private subscriptions: Subscription[] = [];
 
   constructor(private adminService: AdminService, private authService: AuthService) { }
 
@@ -32,10 +33,12 @@ export class UserEditComponent implements OnInit {
   }
 
   private getNews(): void {
-    this.adminService.getNews().subscribe(res => {
+    let subscription: Subscription;
+    subscription = this.adminService.getNews().subscribe(res => {
       this.newss = res;
       this.transformDate()
-    })
+    });
+    this.subscriptions.push(subscription);
   }
 
   private transformDate(): void {
@@ -46,16 +49,22 @@ export class UserEditComponent implements OnInit {
 
   private getUserData(): void {
     let id: number;
-    this.authService.user.subscribe(res => {
+    let subscription: Subscription;
+    subscription = this.authService.user.subscribe(res => {
       id = +res.register.id;
-      this.authService.getUserDataByID(id).subscribe(res => {
-      this.user = res;
+      let subscription: Subscription;
+      subscription = this.authService.getUserDataByID(id).subscribe(res => {
+         this.user = res;
+      });
+      this.subscriptions.push(subscription);
     });
-    });
+    this.subscriptions.push(subscription);
   }
 
-  onSubmitForm(form: NgForm) {
-    
+  ngOnDestroy(): void {
+    if(this.subscriptions.length > 0) {
+      this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+    }
   }
 
 }

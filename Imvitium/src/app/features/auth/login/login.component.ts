@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
 import { LoginUserModel } from '../../../core/models/login-user.model';
 import { AuthService } from '../../../core/services/auth.service';
 
@@ -10,7 +11,9 @@ import { AuthService } from '../../../core/services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
+
+  private subscription: Subscription;
 
   constructor(
     private authService: AuthService, 
@@ -21,8 +24,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmitForm(form: NgForm) {
-    
-    this.authService.loginUser({email: form.value.email, password: form.value.password}).subscribe(
+    this.subscription = this.authService.loginUser({email: form.value.email, password: form.value.password}).subscribe(
       (res: LoginUserModel) => {
         this.authService.user.next(res);
         this.toastr.success(form.value.email,'Welcome!');   
@@ -31,6 +33,12 @@ export class LoginComponent implements OnInit {
       (error) => {
         console.log(error.error);
       });
+  }
+
+  ngOnDestroy(): void {
+    if(this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
 }

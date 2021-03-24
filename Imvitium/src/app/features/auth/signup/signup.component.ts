@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
 import { SignUpUserModel } from '../../../core/models/signup-user.model';
 import { AuthService } from '../../../core/services/auth.service';
 
@@ -8,9 +11,14 @@ import { AuthService } from '../../../core/services/auth.service';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent implements OnInit, OnDestroy {
 
-  constructor(private authService: AuthService) { }
+  private subscription: Subscription;
+
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private tostrService: ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -22,12 +30,19 @@ export class SignupComponent implements OnInit {
       form.value.username,
       form.value.password);
 
-    this.authService.signUpUser(user).subscribe(res => {
-      
+    this.subscription = this.authService.signUpUser(user).subscribe(res => {
+      this.tostrService.success(user.email,'Account Created Successfully!');
+      this.router.navigate(['auth/login']);
     },
     (error) => {
       console.log(error.error);
     });
+  }
+
+  ngOnDestroy(): void {
+    if(this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
 }

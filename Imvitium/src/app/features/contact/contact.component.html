@@ -7,7 +7,7 @@
                     <div>
                         <img src="assets/chat-icon.png" class="img-right" (click)="onContactClick()">
                     </div>
-                    <form #form="ngForm">
+                    <form #form="ngForm" (ngSubmit)="form.form.valid && onSubmitForm(form)">
                       <h2 >CONTACT</h2>
                       <div class="form-group text-left">
                         <label for="name">name</label>

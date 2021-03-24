@@ -261,6 +261,8 @@ export class AdminComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+    if(this.subscriptions.length > 0) {
+      this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+    }
   }
 }
