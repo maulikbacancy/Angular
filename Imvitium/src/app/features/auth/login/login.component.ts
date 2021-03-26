@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         
       },
       (error) => {
-        console.log(error.error);
+        this.toastr.error(error.error,'Something went wrong!');
       });
   }
 

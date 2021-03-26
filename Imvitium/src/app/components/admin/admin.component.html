@@ -102,26 +102,37 @@
                         type="search" 
                         name="search" 
                         placeholder="Search....">
-                    <table >
-                          <tr>
-                            <th>USERNAME</th>
-                            <th>EMAIL</th>
-                            <th>ACCOUNTTYPE</th>
-                            <th>RENEWDATE</th>
-                            <th>EDIT</th>
-                          </tr>
-                          <tr *ngFor="let user of users; let i=index">
-                            <td>{{user.username}}</td>                        
-                            <td>{{user.email}}</td>
-                            <td>{{user.account_type}}</td>
-                            <td>{{user.date}}</td>
-                            <td (click)="onEditUser(i)">
+                    <table>
+                        <tr>
+                        <th>USERNAME</th>
+                        <th>EMAIL</th>
+                        <th>ACCOUNTTYPE</th>
+                        <th>RENEWDATE</th>
+                        <th>EDIT</th>
+                        </tr>
+                        <tr *ngIf="userLoader" style="border: none;">
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <div class="loader">
+                                    <app-loader></app-loader>
+                                </div>
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr *ngFor="let user of users; let i=index" >
+                            <td *ngIf="!userLoader">{{user.username}}</td>                        
+                            <td *ngIf="!userLoader">{{user.email}}</td>
+                            <td *ngIf="!userLoader">{{user.account_type}}</td>
+                            <td *ngIf="!userLoader">{{user.date}}</td>
+                            <td *ngIf="!userLoader" (click)="onEditUser(i)">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                                     <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                                 </svg>
                             </td>
-                          </tr>
+                        </tr>
                           
                     </table>
 
@@ -173,7 +184,12 @@
                                 />
                               </div>
                               <div class="col-xl-2 col-sm-12 text-right" style="padding: 0px;">
-                                <button type="submit" (click)="updateYoutubeLink()">Submit</button>
+                                <button 
+                                    type="submit" 
+                                    (click)="updateYoutubeLink()">
+                                    <span *ngIf="youtubeLinkLoader" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                    {{youtubeLinkLoader ? '': 'Submit'}}
+                                </button>
                               </div>
                           </div>
                         </div>
@@ -185,8 +201,11 @@
                     <div class="form-group">
                         <h5>news and updates</h5>
                         <form [formGroup]="newsForm">
-                            <div class="row youtube-block2" formArrayName="news">
-                                <div class="col col-sm-12">
+                            <div  class="row youtube-block2" formArrayName="news">
+                                <div class="col" *ngIf="newsAllLoader">
+                                    <app-loader></app-loader>
+                                </div>
+                                <div class="col col-sm-12" *ngIf="!newsAllLoader">
                                     <div 
                                         class="row" 
                                         *ngFor="let newsCtrl of newsControls; let i = index"
@@ -204,7 +223,7 @@
                                                 type="submit"
                                                 (click)="onNewsEdit(i)" >
                                                 <span *ngIf="newsCtrl.enabled && newsLoader" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                                                <img  [src]="newsCtrl.disabled ? '../../../assets/edit.svg' : '../../../assets/save.svg'">
+                                                <img  [src]="newsCtrl.disabled ? '../../../assets/edit.svg' : newsLoader ? '' : '../../../assets/save.svg'">
                                             </button>
                                             <button 
                                                 type="submit" 

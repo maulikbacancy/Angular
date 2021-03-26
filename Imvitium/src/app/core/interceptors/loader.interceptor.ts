@@ -26,7 +26,7 @@ export class LoaderInterceptor implements HttpInterceptor {
     },
     (err: any) => {
       this.loading.hide();
-      this.tostr.error('Oops something went wrong', 'Aleart!');
+      
     }));
   }
 }

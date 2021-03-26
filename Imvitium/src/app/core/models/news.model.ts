@@ -4,5 +4,6 @@ export class NewsModel {
        public id:number,
        public news_update:string,
        public updated_at:string
-    ) {}
+    ) {
+    }
 }

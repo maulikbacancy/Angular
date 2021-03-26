@@ -4,7 +4,8 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HttpParams
+  HttpParams,
+  HttpHeaders
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
@@ -24,7 +25,7 @@ export class AuthInterceptor implements HttpInterceptor {
           return next.handle(request);    
         }
         const modifiedReq = request.clone({
-          params: new HttpParams().set('auth', user.access_token)
+          headers: new HttpHeaders().set('auth', user.access_token)
         });
         return next.handle(modifiedReq);
       })

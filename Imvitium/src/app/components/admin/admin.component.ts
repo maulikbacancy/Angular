@@ -31,7 +31,10 @@ export class AdminComponent implements OnInit, OnDestroy {
   public newsForm: FormGroup;
   public newsArray: FormArray;
   private subscriptions: Subscription[] = [];
-  public newsLoader = false; 
+  public newsLoader = false;
+  public youtubeLinkLoader = false; 
+  public userLoader = false;
+  public newsAllLoader = false;
 
   constructor(
     private adminService: AdminService,
@@ -51,11 +54,17 @@ export class AdminComponent implements OnInit, OnDestroy {
   }
 
   private getUserList(pageNumber: number,searchString: string): void {
+    this.userLoader = true;
     let subscription: Subscription;
     subscription = this.adminService.getUserList(pageNumber,searchString).subscribe(
       (res: UserListModel) => {
         this.users = res.data.data;
         this.total_page = res.data.last_page;
+        this.userLoader = false;
+      },
+      (error) => {
+        this.toastr.error(error.error, 'Something Went Wrong!');
+        this.userLoader = false;
       }
     );
     this.subscriptions.push(subscription);
@@ -63,10 +72,16 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   private getUserListByType(pageNumber: number,subscription_1: string,searchString:string): void {
     let subscription: Subscription;
+    this.userLoader = true;
     subscription = this.adminService.getUserListByType(pageNumber,searchString,subscription_1).subscribe(
       (res: UserListModel) => {
         this.users = res.data.data;
         this.total_page = res.data.last_page;
+        this.userLoader = false;
+      },
+      (error) => {
+        this.toastr.error(error.error, 'Something Went Wrong!');
+        this.userLoader = false;
       }
     );
     this.subscriptions.push(subscription);
@@ -90,9 +105,15 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   private getNews(): void {
     let subscription: Subscription;
+    this.newsAllLoader = true;
     subscription = this.adminService.getNews().subscribe(res => {
       this.news = res;
       this.pushNewsToForm();
+      this.newsAllLoader = false;
+    },
+    (error) => {
+      this.toastr.error(error.error, 'Something Went Wrong!');
+      this.newsAllLoader = false;
     });
     this.subscriptions.push(subscription);
   }
@@ -112,11 +133,14 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   public updateYoutubeLink(): void {
     let subscription: Subscription;
+    this.youtubeLinkLoader = true;
     subscription = this.adminService.updateYoutubeLink(this.youtube_link).subscribe(res => {
       this.toastr.success('Youtube Link Updated Successfully!');
+      this.youtubeLinkLoader = false;
     },
     (error)=> {
       this.toastr.error(error.error);
+      this.youtubeLinkLoader = false;
     });
     this.subscriptions.push(subscription);
   }
@@ -207,9 +231,9 @@ export class AdminComponent implements OnInit, OnDestroy {
       if(this.newsArray.length === this.news.length) {
         this.newsArray.push(
           new FormGroup({
-            news: new FormControl({ value: '', disabled: false }, [Validators.required])
+            news: new FormControl({ value: '', disabled: false}, [Validators.required])
           })
-        );
+        );  
       }
       else {
         this.toastr.warning('please save previous news');
@@ -223,6 +247,7 @@ export class AdminComponent implements OnInit, OnDestroy {
       this.newsArray.removeAt(i);
     }
     else {
+      
       let subscription: Subscription;
       subscription = this.adminService.deleteNews(this.news[i].id).subscribe(res => {
         this.toastr.warning(this.news[i].news_update,'News Deleted!');
@@ -283,7 +308,8 @@ export class AdminComponent implements OnInit, OnDestroy {
         this.newsLoader = false;
       },
       (error) => {
-        this.toastr.error(error.error,'News Updation failed');
+        this.toastr.error(error.error.news_update,'News Updation failed');
+        
         this.newsLoader = false;
       });
       this.subscriptions.push(subscription);
