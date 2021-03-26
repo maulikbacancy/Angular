@@ -3,7 +3,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
-import { AuthGuard } from "src/app/core/gaurds/auth.guard";
+import { AuthGuard } from "../../core/gaurds/auth.guard";
 import { AdminComponent } from "./admin.component";
 @NgModule({
     declarations: [AdminComponent],

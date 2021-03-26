@@ -4,8 +4,8 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
-import { ChangePasswordModel } from 'src/app/core/models/change-password.model';
-import { AuthService } from 'src/app/core/services/auth.service';
+import { ChangePasswordModel } from '../../../core/models/change-password.model';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-change-password',
