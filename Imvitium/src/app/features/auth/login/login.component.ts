@@ -27,8 +27,15 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.subscription = this.authService.loginUser({email: form.value.email, password: form.value.password}).subscribe(
       (res: LoginUserModel) => {
         this.authService.user.next(res);
-        this.toastr.success(form.value.email,'Welcome!');   
-        this.router.navigate(['/useredit']);  
+        if(res.register.type === 'admin') {
+          this.toastr.success(form.value.email,'Welcome!');   
+          this.router.navigate(['/admin']);  
+        }
+        else {
+          this.toastr.success(form.value.email,'Welcome!');   
+          this.router.navigate(['/useredit']);
+        } 
+        
       },
       (error) => {
         console.log(error.error);

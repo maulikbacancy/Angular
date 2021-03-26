@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NewsModel } from '../../core/models/news.model';
 import { UserModel } from '../../core/models/user.model';
@@ -17,7 +18,10 @@ export class UserEditComponent implements OnInit, OnDestroy {
   public user = new UserModel('','','','','','');
   private subscriptions: Subscription[] = [];
 
-  constructor(private adminService: AdminService, private authService: AuthService) { }
+  constructor(
+    private adminService: AdminService, 
+    private authService: AuthService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.getNews();
@@ -59,6 +63,14 @@ export class UserEditComponent implements OnInit, OnDestroy {
       this.subscriptions.push(subscription);
     });
     this.subscriptions.push(subscription);
+  }
+
+  public onChangePassword(): void {
+    this.router.navigate(['auth/changepassword']);
+  }
+
+  public onContact(): void {
+    this.router.navigate(['contact']);
   }
 
   ngOnDestroy(): void {

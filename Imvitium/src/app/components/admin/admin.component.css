@@ -2,6 +2,10 @@
     color: white;
 }
 
+.user-display {
+    padding-top: 28px;
+}
+
 
 ul {
     list-style-type: none;
@@ -67,6 +71,7 @@ li a {
 
 .sub-user {
    text-align: center;
+   margin: auto;
    padding: 15px;
    background-color: #394E78;
    border-radius: 20px;
@@ -101,7 +106,7 @@ li a {
     background-color: #85D6DD;
     border-radius: 20px;
     padding: 10px;
-    height: 180px;
+    height: 190px;
     overflow-y: scroll;
 }
 
@@ -125,13 +130,16 @@ li a {
 }
 
 .right-block {
-     padding-right: 20px;
-     padding-left: 30px;
+    margin: 0px;
+    margin-top: 5px;
 }
 
 .left-block {
-    padding-left: 20px;
+    
+    margin: 0px;
 }
+
+
 
 .filter a.active {
     font-weight: bold;
@@ -255,11 +263,8 @@ background: #394E78;
 
 @media (max-width: 800px) {
     .right-block {
-        padding-right: unset;
-    }
-    .left-block {
-        padding-left: unset;
-        margin-left: 10px;
+        margin-top: 7px;
+        
     }
     .search-input {
         float: left;

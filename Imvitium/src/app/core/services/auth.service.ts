@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { ChangePasswordModel } from '../models/change-password.model';
 import { LoginUserModel } from '../models/login-user.model';
 import { SignUpUserModel } from '../models/signup-user.model';
 import { UserModel } from '../models/user.model';
@@ -25,5 +26,9 @@ export class AuthService {
 
   public getUserDataByID(id: number): Observable<UserModel> {
     return this.http.get<UserModel>(environment.url+"api/public/api/user/"+id);
+  }
+
+  public changePassword(id: string, data: ChangePasswordModel): Observable<string> {
+    return this.http.put<string>(environment.url+"api/public/api/change_password/"+id, data);
   }
 }

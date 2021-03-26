@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { EditUserModel } from '../../core/models/edituser.model';
 import { NewsModel } from '../../core/models/news.model';
@@ -30,8 +31,11 @@ export class AdminComponent implements OnInit, OnDestroy {
   public newsForm: FormGroup;
   public newsArray: FormArray;
   private subscriptions: Subscription[] = [];
+  public newsLoader = false; 
 
-  constructor(private adminService: AdminService) { }
+  constructor(
+    private adminService: AdminService,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -109,7 +113,10 @@ export class AdminComponent implements OnInit, OnDestroy {
   public updateYoutubeLink(): void {
     let subscription: Subscription;
     subscription = this.adminService.updateYoutubeLink(this.youtube_link).subscribe(res => {
-      console.log(res);
+      this.toastr.success('Youtube Link Updated Successfully!');
+    },
+    (error)=> {
+      this.toastr.error(error.error);
     });
     this.subscriptions.push(subscription);
   }
@@ -156,14 +163,19 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.editUser.email = this.users[index].email;
     this.editUser.account_type = this.users[index].account_type;
     this.editUser.id = +this.users[index].id;
+    this.editUser.index = index;
     this.editMode = true;
   }
 
   public onUpdateUser(): void {
     let subscription: Subscription;
     subscription = this.adminService.updateUser(this.editUser.id,this.editUser.account_type).subscribe(res => {
-      console.log(res);
+      this.toastr.success('User Subscription updated to '+this.editUser.account_type);
+      this.users[this.editUser.index].account_type = this.editUser.account_type;
       this.editMode = false;
+    },
+    (error) => {
+      this.toastr.error(error.error,'User Subscription updated failed');
     });
     this.subscriptions.push(subscription);
   }
@@ -189,7 +201,7 @@ export class AdminComponent implements OnInit, OnDestroy {
       );
     }
     else if(this.newsArray.controls[this.newsArray.length-1].value['news'] === '') {
-      console.log('please enter news in previous node');
+      this.toastr.warning('please enter news in previous node');
     }
     else {
       if(this.newsArray.length === this.news.length) {
@@ -200,8 +212,7 @@ export class AdminComponent implements OnInit, OnDestroy {
         );
       }
       else {
-        console.log('please save previous news');
-        
+        this.toastr.warning('please save previous news');
       }
     }
            
@@ -214,8 +225,13 @@ export class AdminComponent implements OnInit, OnDestroy {
     else {
       let subscription: Subscription;
       subscription = this.adminService.deleteNews(this.news[i].id).subscribe(res => {
+        this.toastr.warning(this.news[i].news_update,'News Deleted!');
         this.news.splice(i, 1);
         this.newsArray.removeAt(i);
+        
+      },
+      (error)=> {
+        this.toastr.error(error.error,'News Deletion Failed');
       });
       this.subscriptions.push(subscription);
     }
@@ -224,37 +240,51 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   public deleteAllNews(): void {
     this.adminService.deleteAllNews().subscribe(res => {
-      console.log(res);
+      this.toastr.warning('All news Deleted!');
       this.news.length = 0; 
+    },
+    (error) => {
+      this.toastr.error(error.error,'News Deletion Failed!');
     });
   }
 
   public onNewsEdit(i: number): void {
+    
+    
 
     if (this.newsArray.controls[i].disabled) {
       this.newsArray.controls[i].enable();
+      console.log(this.newsArray.controls[i]);
+      
     }
-    else if(this.news.length <= i+1) {
+    else if(this.news.length <= i) {
+      this.newsLoader = true;
       let subscription: Subscription;
       subscription = this.adminService.addNews(this.newsArray.controls[i].value['news']).subscribe(res => {
         this.news.push(res);
         this.newsArray.controls[i].disable();
+        this.toastr.success('News Saved successfully');
+        this.newsLoader = false;
       },
       (error) => {
-        console.log(error);
+        this.toastr.error(error.error,'News Updation failed');
+        this.newsLoader = false;
       }
       );
       this.subscriptions.push(subscription);
     }
     else {
+      this.newsLoader = true;
       let subscription: Subscription;
       subscription = this.adminService.updateNews(this.news[i].id, this.newsArray.controls[i].value['news']).subscribe(res => {
         this.news[i].news_update = this.newsArray.controls[i].value['news'];
         this.newsArray.controls[i].disable();
-        console.log(res);
+        this.toastr.success('News Updated successfully');
+        this.newsLoader = false;
       },
       (error) => {
-        console.log(error);
+        this.toastr.error(error.error,'News Updation failed');
+        this.newsLoader = false;
       });
       this.subscriptions.push(subscription);
     }
