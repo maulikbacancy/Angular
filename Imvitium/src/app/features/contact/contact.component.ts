@@ -13,6 +13,7 @@ import { ContactService } from '../../core/services/contact.service';
 export class ContactComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription;
+  public contactLoader = false;
 
   constructor(
     private contactService: ContactService,
@@ -26,9 +27,15 @@ export class ContactComponent implements OnInit, OnDestroy {
   }
 
   public  onSubmitForm(form: NgForm): void {
+    this.contactLoader = true;
     let contactData = new ContactModel(form.value.name, form.value.email, form.value.message);
     this.subscription = this.contactService.contactDetailSubmit(contactData).subscribe(res => {
       this.tostrService.success(res.email,'Message Sent Successfully from');
+      this.contactLoader = false;
+    },
+    (error) => {
+      this.tostrService.error(error.error.error.message,'Something Went wrong!');
+      this.contactLoader = false;
     });
   }
 

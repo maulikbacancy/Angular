@@ -122,7 +122,8 @@
               class="center btn" 
               [disabled]="!form.valid"
               type="submit">
-              SIGNUP
+              <span *ngIf="signupLoader" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              {{signupLoader ? '' : 'SIGNUP'}}
             </button>
           </div>
 

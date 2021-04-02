@@ -27,8 +27,10 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
                 component: AuthComponent,
                 children: [
                     {path: 'login', component: LoginComponent},
+                    {path: 'login/:token', component: LoginComponent},
                     {path: 'signup', component: SignupComponent},
                     {path: 'forgotpassword', component: ForgotPasswordComponent},
+                    {path: 'resetpassword/:token', component: ChangePasswordComponent},
                     {path: 'changepassword', component: ChangePasswordComponent}    
                 ]
             }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -8,10 +9,19 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   public navbarOpen = false;
+  public loggedIn = false;
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.authService.user.subscribe(res => {
+      if(!!res) {
+        this.loggedIn = true;
+      }
+      else {
+        this.loggedIn = false;
+      }
+    });
   }
 
   public toggleNavbar(): void {
@@ -20,6 +30,10 @@ export class HeaderComponent implements OnInit {
 
   onSelect() {
     this.navbarOpen = false;    
+  }
+
+  onLogout() {
+    this.authService.logout();
   }
 
 }

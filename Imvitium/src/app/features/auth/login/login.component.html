@@ -55,7 +55,7 @@
             <div class="text-left">
               <input 
                 type="checkbox"
-                ngModel 
+                ngModel ="checked"
                 name="rememberMe"
                 #remember="ngModel"
                 /> Remember Me
@@ -66,7 +66,8 @@
                   type="submit"
                   [disabled]="!form.valid"
                 >
-                LOGIN
+                <span *ngIf="loginLoader" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                {{loginLoader ? '' : 'LOGIN'}}
               </button>
             </div><br>
             <div class="form-group justify-content-center">

@@ -14,6 +14,7 @@ import { AuthService } from '../../../core/services/auth.service';
 export class SignupComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription;
+  public signupLoader = false;
 
   constructor(
     private authService: AuthService,
@@ -24,6 +25,7 @@ export class SignupComponent implements OnInit, OnDestroy {
   }
 
   onSubmitForm(form: NgForm) {
+    this.signupLoader = true;
     let user = new SignUpUserModel(
       form.value.name,
       form.value.email,
@@ -31,11 +33,13 @@ export class SignupComponent implements OnInit, OnDestroy {
       form.value.password);
 
     this.subscription = this.authService.signUpUser(user).subscribe(res => {
-      this.tostrService.success(user.email,'Account Created Successfully!');
+      this.tostrService.success(user.email,'Verification link successfully sent to your email address');
+      this.signupLoader = false;
       this.router.navigate(['auth/login']);
     },
     (error) => {
-      console.log(error.error);
+      this.tostrService.error(error.error.email);
+      this.signupLoader = false;
     });
   }
 

@@ -68,7 +68,8 @@
                           class="center btn" 
                           [disabled]="!form.valid"
                           type="submit">
-                          SUBMIT
+                          <span *ngIf="contactLoader" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                          {{contactLoader ? '' : 'SUBMIT'}}
                         </button>
                       </div>
                     </form>

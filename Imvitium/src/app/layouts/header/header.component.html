@@ -12,7 +12,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" [ngClass] ="{'show': navbarOpen}"  [ngStyle]="{'margin-left' : navbarOpen ? '0px' : '30px'}">
+  <div *ngIf="!loggedIn" class="collapse navbar-collapse" [ngClass] ="{'show': navbarOpen}"  [ngStyle]="{'margin-left' : navbarOpen ? '0px' : '30px'}">
       <ul class=" navbar-nav" (click)="onSelect()">
         <li 
           class="nav-item"
@@ -32,14 +32,18 @@
       </ul>
   </div>
 
-  <div class="navbar-brand mx-auto" *ngIf="!navbarOpen">
+  <div *ngIf="loggedIn" class="collapse navbar-collapse" [ngClass] ="{'show': navbarOpen}"  [ngStyle]="{'margin-left' : navbarOpen ? '0px' : '30px'}">
+
+  </div>
+
+  <div class="navbar-brand mx-auto logoClass" *ngIf="!navbarOpen">
       <img 
         [routerLink]="['/']"
         src='assets/logo.png' 
         class="image-class">    
   </div>
   
-  <div class="collapse navbar-collapse" [ngClass] ="{'show': navbarOpen}"  [ngStyle]="{'margin-right' : navbarOpen ? '0px' : '30px'}">
+  <div *ngIf="!loggedIn" class="collapse navbar-collapse" [ngClass] ="{'show': navbarOpen}"  [ngStyle]="{'margin-right' : navbarOpen ? '0px' : '30px'}">
     <ul class=" navbar-nav ml-auto" (click)="onSelect()">
       <li 
         class="nav-item" 
@@ -62,6 +66,22 @@
           class="nav-link"
           routerLinkActive="active"
           [routerLink]="['/auth/signup']">SIGNUP</a>
+      </li>
+    </ul>
+  </div>
+
+  <div 
+    class="collapse navbar-collapse"
+    *ngIf="loggedIn" 
+    [ngClass] ="{'show': navbarOpen}"  
+    [ngStyle]="{'margin-right' : navbarOpen ? '0px' : '30px'}">
+    <ul class=" navbar-nav ml-auto" (click)="onSelect()">
+      
+      <li class="nav-item">
+        <a 
+          class="nav-link"
+          (click)="onLogout()"
+          >LOGOUT</a>
       </li>
     </ul>
   </div>

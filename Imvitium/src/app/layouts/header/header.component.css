@@ -20,3 +20,9 @@ li {
     height: 80%;
     cursor: pointer;
 }
+
+
+.logoClass {
+    display: flex;
+    justify-content: center;
+}

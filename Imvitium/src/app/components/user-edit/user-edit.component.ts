@@ -55,12 +55,7 @@ export class UserEditComponent implements OnInit, OnDestroy {
     let id: number;
     let subscription: Subscription;
     subscription = this.authService.user.subscribe(res => {
-      id = +res.register.id;
-      let subscription: Subscription;
-      subscription = this.authService.getUserDataByID(id).subscribe(res => {
-         this.user = res;
-      });
-      this.subscriptions.push(subscription);
+      this.user = res.register;
     });
     this.subscriptions.push(subscription);
   }

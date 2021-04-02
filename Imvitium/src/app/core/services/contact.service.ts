@@ -12,6 +12,6 @@ export class ContactService {
   constructor(private http: HttpClient) { }
 
   public contactDetailSubmit(contactData: ContactModel): Observable<ContactModel> {
-    return this.http.post<ContactModel>(environment.url+"api/public/api/contact",contactData);
+    return this.http.post<ContactModel>(environment.url+"api/api/contact",contactData);
   }
 }
