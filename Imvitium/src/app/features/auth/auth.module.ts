@@ -9,7 +9,7 @@ import { EqualValidator } from "./signup/equal-validator.directive";
 import { SignupComponent } from "./signup/signup.component";
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { LoginGuard } from "../../core/guards/login.guard";
-import { AuthGuard } from "src/app/core/guards/auth.guard";
+import { AuthGuard } from "../../core/guards/auth.guard";
 
 @NgModule({
     declarations: [
