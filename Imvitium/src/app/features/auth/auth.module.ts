@@ -8,6 +8,8 @@ import { LoginComponent } from "./login/login.component";
 import { EqualValidator } from "./signup/equal-validator.directive";
 import { SignupComponent } from "./signup/signup.component";
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { LoginGuard } from "../../core/guards/login.guard";
+import { AuthGuard } from "src/app/core/guards/auth.guard";
 
 @NgModule({
     declarations: [
@@ -26,12 +28,12 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
                 path: '', 
                 component: AuthComponent,
                 children: [
-                    {path: 'login', component: LoginComponent},
-                    {path: 'login/:token', component: LoginComponent},
-                    {path: 'signup', component: SignupComponent},
-                    {path: 'forgotpassword', component: ForgotPasswordComponent},
+                    {path: 'login', component: LoginComponent, canActivate: [LoginGuard]},
+                    {path: 'login/:token', component: LoginComponent, canActivate: [LoginGuard]},
+                    {path: 'signup', component: SignupComponent, canActivate: [LoginGuard]},
+                    {path: 'forgotpassword', component: ForgotPasswordComponent, canActivate: [LoginGuard]},
                     {path: 'resetpassword/:token', component: ChangePasswordComponent},
-                    {path: 'changepassword', component: ChangePasswordComponent}    
+                    {path: 'changepassword', component: ChangePasswordComponent, canActivate: [AuthGuard]}    
                 ]
             }
 
